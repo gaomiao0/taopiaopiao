@@ -1,0 +1,43 @@
+@charset "utf-8";
+body,div,p,ul,ol,li,dl,dt,dd,form,table,tr,td,h1,h2,h3,h4,h5,h6,fieldset,input,textarea,figure {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,ol li {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+html {
+  font-size: 26.67vw;
+}
+
+html,body {
+  height: 100%;
+}
+body {
+  font-family: "微软雅黑";
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+input{
+  outline: none;
+  border:none;
+}
+::-webkit-scrollbar {
+  width: 0;
+  height:0;
+}
+em,i,u{
+  font-style: normal;
+  text-decoration: none;
+}
