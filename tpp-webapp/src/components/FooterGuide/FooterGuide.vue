@@ -56,10 +56,11 @@
         position fixed
         bottom 0
         width 100%
-        height (103/75)rem
+        height (105/75)rem
         display flex
         justify-content space-around
         align-items center
+        z-index 999
         .guid_item
           text-align center
           color #2f2f2f

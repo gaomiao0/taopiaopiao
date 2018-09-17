@@ -11,16 +11,16 @@
         </a>
       </div>
       <TppHomeSlider></TppHomeSlider>
-      <TppSection></TppSection>
+      <TppMovie class="complete"></TppMovie>
     </div>
 </template>
 
 <script>
     import TppHomeSlider from "../components/TppHome/TppHomeSlider";
-    import TppSection from "../components/TppHome/TppSection";
+    import TppMovie from "../components/TppHome/TppMovie";
     export default {
         name: "home",
-      components: {TppSection, TppHomeSlider}
+      components: {TppMovie, TppHomeSlider}
     }
 </script>
 
@@ -36,7 +36,7 @@
     display flex
     justify-content space-between
     align-items center
-    width 100%
+    width c(726)
   }
   .home_hea a{
     color #fff
@@ -54,10 +54,20 @@
     margin-top c(8)
   }
   .hh_little{
-    padding-right c(40)
+    padding-right c(30)
   }
   .hh_little i{
     font-size c(36)
     padding-left c(24)
+  }
+  .complete{
+    border-top-left-radius c(20)
+    border-top-right-radius c(20)
+    position absolute
+    top c(420)
+    padding c(47) 0 c(27)
+    background-color #fff
+    width c(750)
+    z-index 100
   }
 </style>
