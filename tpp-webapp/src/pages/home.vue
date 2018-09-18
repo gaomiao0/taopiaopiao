@@ -1,5 +1,15 @@
 <template>
     <div>
+      <div class="home_search">
+        <a class="hh_address addtop" href="javascript:;">
+          <span>西安</span>
+          <u class="trangle anotrg"></u>
+        </a>
+        <p class="search_top">
+          <input type="text" class="inp" placeholder="搜影片、影院、影人">
+          <i class="iconfont icon-search"></i>
+        </p>
+      </div>
       <div class="home_hea">
         <a class="hh_address" href="javascript:;">
           <span>西安</span>
@@ -10,7 +20,7 @@
           <i class="iconfont icon-search"></i>
         </a>
       </div>
-      <TppHomeSlider></TppHomeSlider>
+      <TppHomeSlider class="home_slider"></TppHomeSlider>
       <TppMovie class="complete"></TppMovie>
     </div>
 </template>
@@ -18,9 +28,30 @@
 <script>
     import TppHomeSlider from "../components/TppHome/TppHomeSlider";
     import TppMovie from "../components/TppHome/TppMovie";
+
     export default {
-        name: "home",
-      components: {TppMovie, TppHomeSlider}
+      name: "home",
+      components: {TppMovie, TppHomeSlider},
+      methods:{
+        getScroll(){
+          $(document).scroll(function (){
+            // console.log(document.documentElement.scrollTop)
+            var scrollTop = document.documentElement.scrollTop
+            if( scrollTop>100){
+              $('.home_hea').fadeOut(800);
+              $('.home_search').slideDown(500).css({"opacity":"1"});
+              $('.search_top').animate({"width":"592"},10);
+            }else{
+              $('.home_hea').fadeIn(800);
+              $('.home_search').slideUp(500);
+              $('.search_top').animate({"width":"0"},10);
+            }
+          })
+        }
+      },
+      created(){
+        this.getScroll()
+      }
     }
 </script>
 
@@ -29,7 +60,7 @@
     (k/75)rem
   }
   .home_hea{
-    position absolute
+    position fixed
     top (20/75)rem
     left (24/75)rem
     z-index 10
@@ -70,4 +101,47 @@
     width c(750)
     z-index 100
   }
+  .home_slider{
+    position fixed
+    top 0
+    width c(750)
+  }
+  .home_search{
+    padding c(12) c(25)
+    display flex
+    justify-content space-between
+    background-color #fff
+    width c(700)
+    position fixed
+    top 0
+    z-index 999
+    opacity 0
+    border-bottom 1px solid #e8e8e8
+  }
+  .inp{
+    padding c(16) c(16) c(16) c(56)
+    background-color #f5f5f5
+    border-radius c(12)
+    width c(520)
+  }
+  .addtop{
+    color #141414
+  }
+  .search_top{
+    position relative
+  }
+  .search_top .icon-search{
+    font-size c(30)
+    color #7a797f
+    position absolute
+    top c(14)
+    left c(16)
+  }
+  .anotrg{
+    border-top-color  #141414
+  }
+  .bscroll-container{
+    height  c(1000)
+  }
+
 </style>

@@ -6,6 +6,7 @@ import MyTq from '../pages/mytq'
 import Perform from '../pages/perform'
 import TQVideo from '../pages/tqvideo'
 import ShopCar from '../pages/ShopCar'
+import Cinema from '../pages/cinema'
 
 Vue.use(Router)
 
@@ -53,6 +54,13 @@ export default new Router({
     {
       path:'/ShopCar',
       component: ShopCar,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/cinema',
+      component: Cinema,
       meta:{
         showFooter :false
       }

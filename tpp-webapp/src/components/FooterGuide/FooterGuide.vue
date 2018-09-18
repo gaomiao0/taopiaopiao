@@ -72,20 +72,27 @@
         display inline-block
         height (40/75)rem
         width (40/75)rem
+        background-size (40/75)rem (40/75)rem
       .home
         background url("../../assets/img/2.png") no-repeat
+        background-size (40/75)rem (40/75)rem
       .movie
         background url("../../assets/img/4.png") no-repeat
+        background-size (40/75)rem (40/75)rem
       .tqsp
         background url("../../assets/img/6.png") no-repeat
+        background-size (40/75)rem (40/75)rem
       .yc
         background url("../../assets/img/8.png") no-repeat
+        background-size (40/75)rem (40/75)rem
       .wd
         background url("../../assets/img/10.png") no-repeat
+        background-size (40/75)rem (40/75)rem
       .on
         .item_icon
           .home
             background url("../../assets/img/1.png") no-repeat
+            background-size (40/75)rem (40/75)rem
       .on
         .item_icon
           .span_box
@@ -94,16 +101,20 @@
         .item_icon
           .movie
             background url("../../assets/img/3.png") no-repeat
+            background-size (40/75)rem (40/75)rem
       .on
         .item_icon
           .tqsp
             background url("../../assets/img/5.png") no-repeat
+            background-size (40/75)rem (40/75)rem
       .on
         .item_icon
           .yc
             background url("../../assets/img/7.png") no-repeat
+            background-size (40/75)rem (40/75)rem
       .on
         .item_icon
           .wd
             background url("../../assets/img/9.png") no-repeat
+            background-size (40/75)rem (40/75)rem
 </style>

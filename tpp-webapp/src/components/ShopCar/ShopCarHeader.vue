@@ -41,12 +41,41 @@
         }
       },1000)
     })
-  $().ready(function(){
+  $(function(){
     $(window).scroll(function(){
-      var height = $(".header").offsetHeight;
+      // var height = $(".moviemu").offset().top;
       var scrollTop = $(window).scrollTop();
-      if(scrollTop>height){
-        $(".header").addClass("active");
+      if(scrollTop>40 && scrollTop<60){
+        $(".header").css("opacity","0.2");
+        $(".header").css("background","rgb(173,183,203)");
+        $(".header").children(".headerleft").css("color","black");
+        $(".header").find(".qrdd").css("display","block");
+        $(".header").find(".icon-shijian").css("color","black");
+        $(".header").find(".time").css("color","black");
+        $(".header").find(".headerright").css("background","white");
+        $(".header").find(".time").css("background","white");
+      }else if(scrollTop>60 && scrollTop<100){
+        $(".header").css("opacity","0.5");
+        $(".header").css("background","rgb(197,205,219)");
+        $(".header").children(".headerleft").css("color","black");
+        $(".header").find(".qrdd").css("display","block");
+        $(".header").find(".icon-shijian").css("color","black");
+        $(".header").find(".time").css("color","black");
+        $(".header").find(".headerright").css("background","white");
+        $(".header").find(".time").css("background","white");
+      }else if(scrollTop>100 && scrollTop<150){
+        $(".header").css("opacity","0.7");
+        $(".header").css("background","rgb(227,231,238)");
+        $(".header").children(".headerleft").css("color","black");
+        $(".header").find(".qrdd").css("display","block");
+        $(".header").find(".icon-shijian").css("color","black");
+        $(".header").find(".time").css("color","black");
+        $(".header").find(".headerright").css("background","white");
+        $(".header").find(".time").css("background","white");
+      }
+      else if(scrollTop>150){
+        $(".header").css("opacity","1");
+        $(".header").css("background","white");
         $(".header").children(".headerleft").css("color","black");
         $(".header").find(".qrdd").css("display","block");
         $(".header").find(".icon-shijian").css("color","black");
@@ -54,7 +83,8 @@
         $(".header").find(".headerright").css("background","white");
         $(".header").find(".time").css("background","white");
       }else{
-        $(".header").removeClass("active");
+        $(".header").css("opacity","1");
+        $(".header").css("background","rgb(140,158,189)");
         $(".header").find(".qrdd").css("display","none");
         $(".header").children(".headerleft").css("color","white");
         $(".header").find(".icon-shijian").css("color","white");
@@ -70,7 +100,7 @@
 <style scoped>
   .header{
     width: 100%;
-    height:1.3rem;
+    line-height:1.3rem;
     background:rgb(140,158,189);
     padding: 0 0.3rem;
     display: flex;
@@ -81,14 +111,10 @@
     left:0;
 box-shadow: none;
   }
-  .header.active{
-    background:rgb(255,255,255);
-    opacity: 0.8;
-    transition: background 2s;
-  }
+
   .moviemu{
     height: 3.7rem;
-    background: #8c9ab5;
+    background:rgb(140,158,189);
     padding: 1.3rem 0 0 0.3rem;
   }
 .moviemu p{
@@ -96,7 +122,7 @@ box-shadow: none;
   color: #efeff7;
 }
   .moviemu p:first-child{
-
+  margin-top: 0.2rem;
     line-height: 1.2rem;
   }
   .moviemu p:first-child span{

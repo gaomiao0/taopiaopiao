@@ -14,6 +14,7 @@ ul,ol li {
 
 img {
   display: block;
+  border:none;
 }
 
 html {
