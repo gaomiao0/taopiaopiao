@@ -20,8 +20,15 @@
           <i class="iconfont icon-search"></i>
         </a>
       </div>
-      <TppHomeSlider class="home_slider"></TppHomeSlider>
-      <TppMovie class="complete"></TppMovie>
+      <TppHomeSlider class="home_slider" :swiper="swiper"></TppHomeSlider>
+      <TppMovie class="complete"
+                :list="homemovie"
+                :rightnow="rightnow"
+                :natural="natural"
+                :resources="resources"
+                :video="video"
+                v-if="!loading"
+      ></TppMovie>
     </div>
 </template>
 
@@ -32,6 +39,17 @@
     export default {
       name: "home",
       components: {TppMovie, TppHomeSlider},
+      data(){
+        return{
+          homemovie:[],
+          rightnow:[],
+          swiper:[],
+          natural:[],
+          resources:[],
+          video:[],
+          loading:false
+        }
+      },
       methods:{
         getScroll(){
           $(document).scroll(function (){
@@ -39,18 +57,40 @@
             var scrollTop = document.documentElement.scrollTop
             if( scrollTop>100){
               $('.home_hea').fadeOut(800);
-              $('.home_search').slideDown(500).css({"opacity":"1"});
-              $('.search_top').animate({"width":"592"},10);
+              $('.home_search').fadeIn(300).addClass('addanimate');
             }else{
               $('.home_hea').fadeIn(800);
-              $('.home_search').slideUp(500);
-              $('.search_top').animate({"width":"0"},10);
+              $('.home_search').fadeOut(500).removeClass('addanimate');
             }
+          })
+        },
+        getData(){
+          this.$http.get("http://localhost:3000/hanker").then((response)=>{
+            this.homemovie = response.data
+          })
+          this.$http.get("http://localhost:3000/rightnow").then((response)=>{
+            this.rightnow = response.data
+          })
+          this.$http.get("http://localhost:3000/swiper").then((response)=>{
+            this.swiper = response.data
+          })
+          this.$http.get("http://localhost:3000/natural").then((response)=>{
+            this.natural = response.data
+          })
+          this.$http.get("http://localhost:3000/video").then((response)=>{
+            this.video = response.data
+          })
+          this.loading = true
+          let that = this
+          this.$http.get("http://localhost:3000/resources").then((response)=>{
+            this.resources = response.data
+            that.loading = false
           })
         }
       },
       created(){
         this.getScroll()
+        this.getData()
       }
     }
 </script>
@@ -67,7 +107,7 @@
     display flex
     justify-content space-between
     align-items center
-    width c(726)
+    width 100%
   }
   .home_hea a{
     color #fff
@@ -81,8 +121,7 @@
     width 0
     border c(8) solid transparent
     border-top-color #fff
-    margin-left c(8)
-    margin-top c(8)
+    margin c(8) c(20) 0 c(8)
   }
   .hh_little{
     padding-right c(30)
@@ -96,39 +135,39 @@
     border-top-right-radius c(20)
     position absolute
     top c(420)
-    padding c(47) 0 c(27)
+    padding c(47) 0 c(125)
     background-color #fff
-    width c(750)
+    width 100%
     z-index 100
   }
   .home_slider{
     position fixed
     top 0
-    width c(750)
+    width 100%
   }
   .home_search{
     padding c(12) c(25)
     display flex
-    justify-content space-between
     background-color #fff
-    width c(700)
+    width 100%
     position fixed
-    top 0
+    top c(-84)
     z-index 999
-    opacity 0
     border-bottom 1px solid #e8e8e8
+    transition all 0.5s
   }
   .inp{
     padding c(16) c(16) c(16) c(56)
     background-color #f5f5f5
     border-radius c(12)
-    width c(520)
+    width 90%
   }
   .addtop{
     color #141414
   }
   .search_top{
     position relative
+    width 80%
   }
   .search_top .icon-search{
     font-size c(30)
@@ -142,6 +181,10 @@
   }
   .bscroll-container{
     height  c(1000)
+  }
+  .addanimate{
+    position fixed
+    top c(0)
   }
 
 </style>

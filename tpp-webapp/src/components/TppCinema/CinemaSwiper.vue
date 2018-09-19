@@ -43,7 +43,7 @@ c(k){
     height c(236)
     margin-top c(284)
     padding-right 2px
-    padding-top 1px
+    padding-top 2px
     img{
       width 100%
       height c(236)

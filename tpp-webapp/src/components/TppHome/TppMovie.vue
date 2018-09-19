@@ -1,5 +1,5 @@
 <template>
-  <div class="big_movie">
+  <div>
     <div class="movie_slide">
       <h1 class="Movie_p">
           <span class="hot">热映影片</span>
@@ -9,76 +9,17 @@
           </a>
         </h1>
       <ul class="movie_ul">
-          <li class="movie_li">
+          <li class="movie_li" v-for="k in list" :key="k.id">
             <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-7.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
+              <img :src=k.img />
+              <span class="giant" v-if="k.type">{{k.type}} {{k.style}}</span>
+              <span class="score" v-if="k.score">淘票票评分 <i>{{k.score}}</i></span>
+              <span class="score" v-if="k.want"><i>{{k.want}}</i> 人想看</span>
             </a>
-            <p class="movie_storm">反贪风暴3</p>
+            <p class="movie_storm">{{k.title}}</p>
             <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
-            </a>
-          </li>
-          <li class="movie_li">
-            <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-8.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
-            </a>
-            <p class="movie_storm">反贪风暴3</p>
-            <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
-            </a>
-          </li>
-          <li class="movie_li">
-            <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-7.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
-            </a>
-            <p class="movie_storm">反贪风暴3</p>
-            <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
-            </a>
-          </li>
-          <li class="movie_li">
-            <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-8.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
-            </a>
-            <p class="movie_storm">反贪风暴3</p>
-            <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
-            </a>
-          </li>
-          <li class="movie_li">
-            <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-7.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
-            </a>
-            <p class="movie_storm">反贪风暴3</p>
-            <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
-            </a>
-          </li>
-          <li class="movie_li">
-            <a class="movie_one" href="javascript:;">
-              <img src="../../assets/img/d-8.jpg" />
-              <span class="giant">2D 中国巨幕</span>
-              <span class="score">淘票票评分 <i>8.6</i></span>
-            </a>
-            <p class="movie_storm">反贪风暴3</p>
-            <a class="trade" href="javascript:;">
-              <span class="trade_one">购票</span>
-              <span class="trade_two">预售</span>
+              <span class="trade_one" v-if="k.showstyle">{{k.showstyle}}</span>
+              <span class="trade_two" v-if="k.premise">{{k.premise}}</span>
             </a>
           </li>
           <li class="movie_more">
@@ -98,59 +39,15 @@
         </a>
       </h1>
       <ul class="movie_ul">
-        <li class="movie_li">
+        <li class="movie_li" v-for="v in rightnow" :key="v.id">
           <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
+            <img :src=v.img />
+            <span class="giant" v-if="v.type">{{v.type}} {{v.style}}</span>
+            <span class="score" v-if="v.score">点映评分 <i>{{v.score}}</i></span>
+            <span class="score" v-if="v.want"><i>{{v.want}}</i> 人想看</span>
           </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
-        </li>
-        <li class="movie_li">
-          <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
-          </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
-        </li>
-        <li class="movie_li">
-          <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
-          </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
-        </li>
-        <li class="movie_li">
-          <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
-          </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
-        </li>
-        <li class="movie_li">
-          <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
-          </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
-        </li>
-        <li class="movie_li">
-          <a class="movie_one" href="javascript:;">
-            <img src="../../assets/img/d-7.jpg" />
-            <span class="giant">2D 中国巨幕</span>
-            <span class="score">淘票票评分 <i>8.6</i></span>
-          </a>
-          <p class="movie_storm">反贪风暴3</p>
-          <p class="movie_date">9月30日</p>
+          <p class="movie_storm">{{v.title}}</p>
+          <p class="movie_date">{{v.date}}</p>
         </li>
         <li class="movie_more">
           <a class="region" href="javascript:;">
@@ -166,8 +63,15 @@
         <span>换一换推荐内容</span>
       </a>
     </h1>
-    <TppChoice></TppChoice>
-    <TppNews></TppNews>
+    <TppVideo :tppvideo="video[0]"></TppVideo>
+    <TppNews :tppres="resources[0]"></TppNews>
+    <TppChoice :tppnatural="natural[0]"></TppChoice>
+    <TppChoice :tppnatural="natural[1]"></TppChoice>
+    <TppNews :tppres="resources[1]"></TppNews>
+    <TppVideo :tppvideo="video[1]"></TppVideo>
+    <TppNews :tppres="resources[2]"></TppNews>
+    <TppChoice :tppnatural="natural[2]"></TppChoice>
+    <TppChoice :tppnatural="natural[3]"></TppChoice>
     <div class="model">
       <a class="model_one" href="javascript:;">
         <img src="../../assets/img/d-15.jpg" />
@@ -198,7 +102,13 @@
         </span>
       </a>
     </div>
-    <TppVideo></TppVideo>
+    <TppVideo :tppvideo="video[2]"></TppVideo>
+    <TppNews :tppres="resources[3]"></TppNews>
+    <TppNews :tppres="resources[4]"></TppNews>
+    <TppVideo :tppvideo="video[3]"></TppVideo>
+    <TppChoice :tppnatural="natural[1]"></TppChoice>
+    <TppVideo :tppvideo="video[4]"></TppVideo>
+
   </div>
 </template>
 
@@ -209,7 +119,8 @@
 
   export default {
     name: "TppMovie",
-    components: {TppVideo, TppNews, TppChoice}
+    components: {TppVideo, TppNews, TppChoice},
+    props:["list","rightnow","natural","resources","video"]
   }
 </script>
 
@@ -271,6 +182,7 @@
     font-size c(26)
     font-weight 600
     line-height c(62)
+    width c(180)
     white-space nowrap
     overflow hidden
     text-overflow ellipsis

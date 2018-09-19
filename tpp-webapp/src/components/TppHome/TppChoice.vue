@@ -2,24 +2,25 @@
   <div class="choice_one">
     <a class="all" href="javascript:;">
       <p class="all_text">
-        <span class="all_tit">王学兵逆袭之作，最后却是文章上了车？</span>
+        <span class="all_tit">{{tppnatural.head}}</span>
         <span class="msg">
           <i class="message">
-            <i>E神电影</i>
-            <i>2评</i>
-            <i>26分钟前</i>
+            <i>{{tppnatural.name}}</i>
+            <i>{{tppnatural.msg}}</i>
+            <i>{{tppnatural.time}}</i>
           </i>
           <i class="iconfont icon-cuo"></i>
         </span>
       </p>
-      <img class="all_pic" src="../../assets/img/d-12.jpg" />
+      <img class="all_pic" :src=tppnatural.img />
     </a>
   </div>
 </template>
 
 <script>
   export default {
-    name: "TppChoice"
+    name: "TppChoice",
+    props:["tppnatural"]
   }
 </script>
 

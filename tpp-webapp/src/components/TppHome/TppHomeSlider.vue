@@ -2,19 +2,9 @@
   <div>
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
+        <div class="swiper-slide" v-for="s in swiper" :key="s.id">
           <a class="swiper_img" href="javascript:;">
-            <img src="../../assets/img/d-1.jpg" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a class="swiper_img" href="javascript:;">
-            <img src="../../assets/img/d-2.jpg" />
-          </a>
-        </div>
-        <div class="swiper-slide">
-          <a class="swiper_img" href="javascript:;">
-            <img src="../../assets/img/d-3.jpg" />
+            <img :src=s.img />
           </a>
         </div>
       </div>
@@ -28,22 +18,27 @@
   import Swiper from 'swiper';
   export default {
     name: "TppHomeSlider",
+    props:["swiper"],
     mounted(){
-      new Swiper ('.swiper-container', {
-        loop: true,
-        autoplay:true,
-        pagination: {
-          el: '.swiper-pagination'
-        }
-      })
+      setTimeout(function () {
+        new Swiper ('.swiper-container', {
+          loop: true,
+          autoplay:true,
+          pagination: {
+            el: '.swiper-pagination'
+          }
+        })
+      },30)
     }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   .swiper_img img{
-    width (750/75)rem
-    height (450/75)rem
+    //width (750/75)rem
+    //height (450/75)rem
+    width 100%
+    height 100%
   }
   .swiper-pagination-bullet-active{
       background-color #fff

@@ -10,41 +10,36 @@
       </div>
       <div class="h_cen">
         <ul class="navbox">
-          <li :class="{li_active:flag==0}">今天<span>09-18</span></li>
-          <li>明天<span>09-19</span></li>
-          <li>后天<span>09-20</span></li>
-          <li>周五<span>09-21</span></li>
-          <li>周六<span>09-22</span></li>
-          <li>周日<span>09-23</span></li>
-          <li>周一<span>09-24</span></li>
+          <li :class="{li_active:flag==0}" @click="chose(0)">今天<span>09-18</span></li>
+          <li :class="{li_active:flag==1}" @click="chose(1)">明天<span>09-19</span></li>
+          <li :class="{li_active:flag==2}" @click="chose(2)">后天<span>09-20</span></li>
+          <li :class="{li_active:flag==3}" @click="chose(3)">周五<span>09-21</span></li>
+          <li :class="{li_active:flag==4}" @click="chose(4)">周六<span>09-22</span></li>
+          <li :class="{li_active:flag==5}" @click="chose(5)">周日<span>09-23</span></li>
+          <li :class="{li_active:flag==6}" @click="chose(6)">周一<span>09-24</span></li>
         </ul>
       </div>
       <div class="h_bot">
         <ul class="navbox2">
-          <li>
-            <span>区域<i class="iconfont icon-arrLeft-fill"></i></span>
-
+          <li @click="show(0)">
+            <span>区域<i class="iconfont icon-arrLeft-fill" ></i></span>
           </li>
-          <li>
+          <li @click="show(1)">
             <span>品牌<i class="iconfont icon-arrLeft-fill"></i></span>
-
           </li>
-          <li>
+          <li @click="show(2)">
             <span>离我最近<i class="iconfont icon-arrLeft-fill"></i></span>
-
           </li>
-          <li>
+          <li @click="show(3)">
             <span>时段<i class="iconfont icon-arrLeft-fill"></i></span>
-
           </li>
-          <li>
+          <li @click="show(4)">
             <span>特色<i class="iconfont icon-arrLeft-fill"></i></span>
-
           </li>
         </ul>
       </div>
-      <div class="selections">
-        <div class="secbox area">
+      <div class="selections" ref="selections">
+        <div v-show="active==0" class="secbox area">
           <ul class="list">
           <li><div class="active_div">不限区域</div></li>
           <li><div>灞桥区</div></li>
@@ -66,29 +61,158 @@
           <li><div>长安区</div></li>
         </ul>
         </div>
-        <div class="secbox area rank">
-          <ul class="list">
-            <li><div class="active_div">不限区域</div></li>
-            <li><div>灞桥区</div></li>
-            <li><div>碑林区</div></li>
-            <li><div>高陵县</div></li>
-            <li><div>高新区</div></li>
-            <li><div>户县</div></li>
-            <li><div>经开区</div></li>
-            <li><div>蓝田县</div></li>
-            <li><div>莲湖区</div></li>
-            <li><div>临潼区</div></li>
-            <li><div>曲江新区</div></li>
-            <li><div>市区</div></li>
-            <li><div>未央区</div></li>
-            <li><div>新城区</div></li>
-            <li><div>西咸新区</div></li>
-            <li><div>阎良区</div></li>
-            <li><div>雁塔区</div></li>
-            <li><div>长安区</div></li>
-          </ul>
+        <div v-show="active==1" class="secbox area rank">
+          <ol>
+            <li class="active_one">
+              <div>
+              <i class="iconfont icon-duigou"></i>
+              <span>全部</span>
+              </div>
+              <div class="tiaonum">
+                101
+              </div>
+            </li>
+            <li>
+              <div>
+              <i class="iconfont icon-duigou"></i>
+              <span>万达影城</span>
+              </div>
+              <div class="tiaonum">
+                10
+              </div>
+            </li>
+            <li>
+              <div>
+                <i class="iconfont icon-duigou"></i>
+                <span>CGV影城</span>
+              </div>
+              <div class="tiaonum">
+                4
+              </div>
+            </li>
+            <li>
+              <div>
+                <i class="iconfont icon-duigou"></i>
+                <span>大地影院</span>
+              </div>
+              <div class="tiaonum">
+                4
+              </div>
+            </li>
+            <li>
+              <div>
+                <i class="iconfont icon-duigou"></i>
+                <span>横店电影城</span>
+              </div>
+              <div class="tiaonum">
+                3
+              </div>
+            </li>
+            <li>
+              <div>
+                <i class="iconfont icon-duigou"></i>
+                <span>太平洋电影城</span>
+              </div>
+              <div class="tiaonum">
+                3
+              </div>
+            </li>
+            <li>
+              <div>
+                <i class="iconfont icon-duigou"></i>
+                <span>耀莱成龙国际影城</span>
+              </div>
+              <div class="tiaonum">
+                3
+              </div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>奥斯卡国际影城</span>
+              </div>
+              <div class="tiaonum">2</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>博纳国际影城</span>
+              </div>
+              <div class="tiaonum">2</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>橙天嘉禾影城</span>
+              </div>
+              <div class="tiaonum">2</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>恒大影城</span>
+              </div>
+              <div class="tiaonum">2</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>曲江国际影城</span>
+              </div>
+              <div class="tiaonum">2</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>欢乐小马电影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>卢米埃影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>SFC上影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>UMK国际影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>文投国际影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>沃美影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>幸福蓝海国际影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>中影国际影城</span>
+              </div>
+              <div class="tiaonum">1</div>
+            </li>
+            <li>
+              <div><i class="iconfont icon-duigou"></i>
+                <span>其他</span>
+              </div>
+              <div class="tiaonum">56</div>
+            </li>
+          </ol>
         </div>
-        <div class="secbox area myrecent">
+        <div v-show="active==2" class="secbox area myrecent">
           <ol>
             <li class="active_one">
               <i class="iconfont icon-duigou"></i>
@@ -100,7 +224,7 @@
             </li>
           </ol>
         </div>
-        <div class="secbox area timesec">
+        <div v-show="active==3" class="secbox area timesec">
           <ul class="list">
             <li><div class="active_div">不限时段</div></li>
             <li><div>9-11点</div></li>
@@ -113,7 +237,7 @@
             <li><div>23点以后</div></li>
           </ul>
         </div>
-        <div class="secbox area special">
+        <div v-show="active==4" class="secbox area special">
           <ul class="list">
             <li><div class="active_div">不限</div></li>
           </ul>
@@ -153,6 +277,7 @@
             </li>
           </ul>
         </div>
+        <div class="bg" @click="hide"></div>
       </div>
     </div>
 </template>
@@ -162,8 +287,25 @@
         name: "CinemaHeader",
         data(){
             return {
-              flag:0
+              flag:0,
+              active:6
             }
+        },
+        methods:{
+          show(n){
+            this.$refs.selections.style.display = "block";
+            this.active = n;
+            $(".navbox2 li").css({"color":"#323332"});
+            $(".navbox2 li").eq(n).css({"color":"#ff495f"})
+            $(".navbox2 li").eq(n).find(".iconfont").css({"transform":"rotateZ(180deg)"})
+          },
+          hide(){
+            this.$refs.selections.style.display = "none";
+            $(".navbox2 li").css({"color":"#323332"})
+          },
+          chose(m){
+            this.flag = m
+          }
         }
     }
 </script>
@@ -220,7 +362,7 @@ c(k){
   }
   .h_bot{
     height c(95)
-    border-bottom 3px solid #f9f7f9
+    border-bottom 2px solid #f9f7f9
     .navbox2{
       display flex
       height 100%
@@ -235,28 +377,35 @@ c(k){
         white-space nowrap
         overflow hidden
         text-overflow ellipsis
-        .iconfont{
-          color #9c9a9c
-          font-size c(25)
-          margin-left c(2)
-        }
+
+      }
+      .cho{
+        color #ff495f
       }
     }
   }
   .selections {
-    padding-bottom 1700px
-    background rgba(0,0,0,.4)
+    height 2500px
     position relative
+    display none
+    .bg{
+      width 100%
+      height 2500px
+      background rgba(0,0,0,.4)
+      position absolute
+      left 0
+      top 0
+    }
     .secbox{
       position absolute
       left 0
       top 0
+      z-index 50
     }
     .area {
       background #fff
       width 100%
       height c(483)
-      display none
       .list {
         display flex
         padding c(23)
@@ -285,10 +434,29 @@ c(k){
       }
     }
     .rank{
-        height c(613)
+        height c(640)
+        overflow-y scroll
+        ol{
+          li{
+            line-height c(82)
+            color #2a2a2a
+            font-size c(28)
+            border-bottom 2px solid #f3f3f3
+            padding 0 c(18)
+            box-sizing border-box
+            display flex
+            justify-content space-between
+            b{
+              font-weight 100
+            }
+          }
+          .active_one{
+            color #ff6175
+          }
+      }
     }
     .myrecent{
-      display block
+      /*display block*/
       height c(178)
       ol{
         li{
@@ -337,5 +505,10 @@ c(k){
       }
     }
   }
+}
+.icon-arrLeft-fill{
+    /*color #9c9a9c*/
+    font-size c(25)
+    margin-left c(2)
 }
 </style>

@@ -7,6 +7,7 @@ import Perform from '../pages/perform'
 import TQVideo from '../pages/tqvideo'
 import ShopCar from '../pages/ShopCar'
 import Cinema from '../pages/cinema'
+import Map from '../pages/map'
 
 Vue.use(Router)
 
@@ -61,6 +62,13 @@ export default new Router({
     {
       path:'/cinema',
       component: Cinema,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/map',
+      component: Map,
       meta:{
         showFooter :false
       }

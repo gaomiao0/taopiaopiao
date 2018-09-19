@@ -1,14 +1,14 @@
 <template>
   <div class="choice_three">
-    <h2 class="news_tit">一部让人压抑难受的电影《调味的房子》，小女孩版《肖申克的救赎》</h2>
-    <video controls poster="../../assets/img/d-13.jpg" class="video_one">
-      <source src="../../assets/img/d-14.mp4">
+    <h2 class="news_tit">{{tppvideo.head}}</h2>
+    <video controls :poster=tppvideo.img class="video_one">
+      <source :src=tppvideo.mp4>
     </video>
     <p class="msg">
       <span class="message">
-        <i>E神电影</i>
-        <i>2评</i>
-        <i>26分钟前</i>
+        <i>{{tppvideo.name}}</i>
+        <i>{{tppvideo.msg}}</i>
+        <i>{{tppvideo.time}}</i>
       </span>
       <i class="iconfont icon-cuo"></i>
     </p>
@@ -17,7 +17,8 @@
 
 <script>
   export default {
-    name: "TppVideo"
+    name: "TppVideo",
+    props:["tppvideo"]
   }
 </script>
 

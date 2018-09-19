@@ -1,16 +1,16 @@
 <template>
   <div class="choice_two">
-    <h2 class="news_tit">“起点大男主”们的改编之殇</h2>
+    <h2 class="news_tit">{{tppres.head}}</h2>
     <a class="news_pic" href="javascript:;">
-      <img src="../../assets/img/d-11.jpg" >
-      <img src="../../assets/img/d-10.jpg" >
-      <img src="../../assets/img/d-9.jpg" >
+      <img :src=tppres.pic >
+      <img :src=tppres.pic1 >
+      <img :src=tppres.pic2 >
     </a>
     <p class="msg">
       <span class="message">
-        <i>E神电影</i>
-        <i>2评</i>
-        <i>26分钟前</i>
+        <i>{{tppres.name}}</i>
+        <i>{{tppres.msg}}</i>
+        <i>{{tppres.time}}</i>
       </span>
       <i class="iconfont icon-cuo"></i>
     </p>
@@ -19,7 +19,8 @@
 
 <script>
   export default {
-    name: "TppNews"
+    name: "TppNews",
+    props:["tppres"]
   }
 </script>
 
