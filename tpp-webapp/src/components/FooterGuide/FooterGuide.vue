@@ -1,5 +1,5 @@
 <template>
-    <div class="footer">
+    <div class="guidefooter">
       <a href="javascript:;" class="guid_item guid1" :class="{on: '/home'===$route.path}" @click="goTo('/home')">
         <span class="item_icon">
           <i class="home_img home"></i>
@@ -44,7 +44,7 @@
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-      .footer
+      .guidefooter
         background white
         a:link{text-decoration: none!important;  }
         a:visited{text-decoration: none!important;  }

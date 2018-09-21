@@ -28,15 +28,13 @@
             el: '.swiper-pagination'
           }
         })
-      },30)
+      },20)
     }
   }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   .swiper_img img{
-    //width (750/75)rem
-    //height (450/75)rem
     width 100%
     height 100%
   }

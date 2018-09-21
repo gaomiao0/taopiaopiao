@@ -1,0 +1,78 @@
+@charset "utf-8";
+.fl{float:left;}
+.fr{float:right;}
+.none{display:none;}
+.loan_jm1{width:94%;margin:0 auto;}
+.loan_jm_spa1{width:100%;height:40px;line-height:40px;font-size:1em;color:#666;display:block;float:left;}
+.loan_jm_l1{margin-top:10px;margin-bottom:15px;height:40px;}
+.wbk_srn{width:57%;height:40px;border:1px solid #ccc;background:#FFF;float:left;padding-left:3%;line-height:40px;color:#ADADAD;
+font-size:1.1em; background-size:45%;background-position:center;background:#fff;}
+.wbk_srn b{width:30px;height:40px;border:1px solid #ccc;background:#FFF;float:left;padding-left:3%;line-height:40px;color:#ADADAD;
+font-size:1.1em;}
+/*显示点击是哪个字母*/
+.showLetter{
+    /*position: fixed;*/
+    color:#105eae;
+    width: 100%;
+    height:50px;
+    /*top:45%;*/
+    /*left: 45%;*/
+    border-radius: 50%;
+    border: #105eae 1px solid;
+    text-align: center;
+    display: none;
+}
+.showLetter span{
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 30px;
+}
+.seach{
+    width: 90%;
+    height: 45px;
+    padding-top: 10px;
+    background: #fff;
+}
+.seach input{
+    width: 90%;
+    height: 45px;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #eee;
+    color: #000
+}
+/*城市弹层*/
+.container1{width:100%;right:20;overflow-y:scroll}
+.letter{width:auto;position:fixed;top:0px;right:5px;text-align:center;}
+.letter ul{list-style-type:none;}
+.letter ul li a{text-decoration:none;color:#105eae;font-size: 16px}
+.city{
+    /*width: 100%;*/
+    padding: 0.2rem;
+  color: #3b3b3c;
+}
+.history{margin-top: 15px;}
+.hot{overflow: hidden;}
+.hot div{
+    display: block;
+    width: 29%;
+    height: 0.8rem;
+    float: left;
+    text-align: center;
+    line-height: 0.8rem;
+    color: #333;
+    margin-top: 0.2rem;
+    margin-right: 3%;
+    border: 1px solid #e7e7e7;
+    border-radius: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.clear-history{display: block;float: right;}
+.city-list{width:100%;}
+.city-list .city-letter{font-size:0.35rem;display:inline-block;padding-bottom:5px;border-bottom:1px solid #e8ecf1;width:100%;background: #f2f3f4}
+.city-list p{color:#333;width:95%;min-height:50px;line-height:0.8rem;border-bottom:1px solid #e7e7e7;cursor:pointer;}
+.UISelect{margin-top:5px}

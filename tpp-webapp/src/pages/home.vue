@@ -65,26 +65,17 @@
           })
         },
         getData(){
-          this.$http.get("http://localhost:3000/hanker").then((response)=>{
-            this.homemovie = response.data
-          })
-          this.$http.get("http://localhost:3000/rightnow").then((response)=>{
-            this.rightnow = response.data
-          })
-          this.$http.get("http://localhost:3000/swiper").then((response)=>{
-            this.swiper = response.data
-          })
-          this.$http.get("http://localhost:3000/natural").then((response)=>{
-            this.natural = response.data
-          })
-          this.$http.get("http://localhost:3000/video").then((response)=>{
-            this.video = response.data
-          })
           this.loading = true
           let that = this
-          this.$http.get("http://localhost:3000/resources").then((response)=>{
-            this.resources = response.data
+          this.$http.get("http://localhost:3000/home").then((response)=>{
+            this.homemovie = response.data[0].hanker
+            this.rightnow = response.data[0].rightnow
+            this.swiper = response.data[0].swiper
+            this.natural = response.data[0].natural
+            this.video = response.data[0].video
+            this.resources = response.data[0].resources
             that.loading = false
+            console.log(response.data)
           })
         }
       },

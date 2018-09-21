@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div id="app">
     <router-view></router-view>
     <FooterGuide v-show="$route.meta.showFooter"></FooterGuide>
   </div>
@@ -15,5 +15,7 @@
 </script>
 
 <style>
-
+#app{
+  height:100%;
+}
 </style>

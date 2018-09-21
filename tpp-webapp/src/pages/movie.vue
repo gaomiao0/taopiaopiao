@@ -1,197 +1,114 @@
 <template>
-    <div >
+    <div class="movie_vue">
       <div class="movie_header">
         <div><span>西安</span><i class="iconfont icon-arrLeft-fill"></i></div>
         <div><span class="on">电影</span><span>影院</span></div>
         <div><i class="iconfont icon-saoyisao"></i><i class="iconfont icon-search"></i></div>
       </div>
       <div class="movie_section">
-        <sticky :check-sticky-support="false" :offset="0">
-          <tab :line-width=4 active-color="#e93d52" custom-bar-width="42px">
-            <tab-item :selected="demo4 === item" v-for="(item, index) in list4" @click="demo4 = item" :key="index">{{item}}</tab-item>
-          </tab>
-        </sticky>
-        <div class="swiper-container">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <div class="section_con">
-              <div class="con_header">
+        <div>
+          <sticky :check-sticky-support="false" :offset="0">
+            <tab :line-width=4 active-color='#f53348' v-model="index" bar-active-color="#fc4259" custom-bar-width="42px">
+              <tab-item class="vux-center" :selected="demo2 === item" v-for="(item, index) in list2" @click="demo2 = item" :key="index">{{item}}</tab-item>
+            </tab>
+          </sticky>
+          <swiper v-model="index" :aspect-ratio="4" :show-dots="false">
+            <swiper-item>
+              <div class="tab-swiper vux-center">
+                <div class="section_con">
+                  <div class="con_header">
             <span class="span_left">
               <i class="iconfont icon-zhuzhuangtu"></i>
               <span>实时票房</span>
             </span>
-                <span class="span_right">
+                    <span class="span_right">
               <span>今日大盘</span>
               <span class="pfcolor">2245.5万</span>
               <i class="iconfont icon-up1-copy"></i>
             </span>
-              </div>
-              <div class="banner"><img src="../../static/img/banner.jpg" alt=""></div>
-              <div class="movie_lists">
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
                   </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
+                  <div class="banner"><img src="../../static/img/banner.jpg" alt=""></div>
+                  <div class="movie_lists">
+                    <div class="movie_list" v-for="movie in movies">
+                      <a href="#"><img :src=movie.img alt=""></a>
+                      <router-link to="/detall" class="movie_msg">
+                        <div class="list_right">
+                          <div class="right_left">
+                            <span class="movie_title"><span>{{movie.title}}</span><span><i v-if="movie.type">{{movie.type}}</i><i  v-if="movie.style">{{movie.style}}</i></span></span>
+                            <span class="grade" v-if="movie.score">淘票票分<i>{{movie.score}}</i></span>
+                            <span class="styleshow" v-if="movie.want"><i>{{movie.want}}</i>人想看&nbsp;|&nbsp;<i>{{movie.show}}</i></span>
+                            <span class="zhuyan">导演:<span>{{movie.director}}</span></span>
+                            <span class="zhuyan">主演：<span>{{movie.protagonist[0]}}</span>&nbsp;<span>{{movie.protagonist[1]}}</span>&nbsp;<span>{{movie.protagonist[2]}}</span></span>
+                            <span class="fenlei"><span v-if="movie.dayhot">{{movie.dayhot}}</span><span v-if="movie.weekhot">{{movie.weekhot}}</span><span v-if="movie.praise">{{movie.praise}}</span></span>
+                          </div>
+                          <span class="right_right" :style="{background:movie.color}">{{movie.showstyle}}</span>
+                        </div>
+                        <div class="list_bottom" v-if="movie.fragment"><i>{{movie.fragment}}</i>&nbsp;&nbsp;|&nbsp;&nbsp;<span>{{movie.fragmentmsg}}</span></div>
+                      </router-link>
                     </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
-                  </div>
-                </div>
-                <div class="movie_list">
-                  <a href="#"><img src="../../static/img/d-7.jpg" alt=""></a>
-                  <div class="list_right">
-                    <div class="right_left">
-                      <span class="movie_title"><span>反贪风暴3</span><span><i>2d</i><i>中国巨幕</i></span></span>
-                      <span class="grade">淘票票分<i>8.6</i></span>
-                      <span class="zhuyan">导演:林德禄</span>
-                      <span class="zhuyan">主演：古天乐，张智霖，郑嘉颖</span>
-                      <span class="fenlei"><span>今日最热</span><span>一周最热</span></span>
-                    </div>
-                    <span class="right_right">购票</span>
                   </div>
                 </div>
               </div>
-            </div>
-            </div>
-            <div class="swiper-slide">Slide 2</div>
-          </div>
+            </swiper-item>
+            <swiper-item>
+              <div class="tab-swiper vux-center">2</div>
+            </swiper-item>
+          </swiper>
         </div>
       </div>
     </div>
 </template>
 
 <script>
-    import { Tab, TabItem,Sticky } from 'vux'
-    import Swiper from 'swiper'
+    import { Tab, TabItem,Sticky,Swiper,SwiperItem } from 'vux'
+    const list = () => ['正在热映', '即将上映']
     export default {
         name: "home",
         data(){
           return{
-            list4: ['正在放映', '即将上映'],
-            demo4: '正在放映',
-            demoDisabled: 'A',
-            index: 0,
+            list2: list(),
+            demo2: '正在热映',
+            movies:[],
+            index: 0
           }
         },
         components: {
           Tab,
           TabItem,
           Sticky,
+          Swiper,
+          SwiperItem
         },
       methods:{
         onItemClick (index) {
           console.log('on item click:', index)
         },
+        fetchMovies(){
+          this.$http.get("http://localhost:3000/movie")
+            .then((response)=> {
+              this.movies = response.data
+              console.log(this.movies)
+            })
+        },
       },
       mounted(){
-        var swiper = new Swiper('.swiper-container', {
-          pagination: {
-            // el: '.vux-tab',el: '.vux-tab',
-            clickable: true,
-          },
-        });
-      }
+
+      },
+      created(){
+        this.fetchMovies();
+      },
     }
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
   c(p)
     (p/75)rem
+  .movie_vue
+    a:link{text-decoration: none!important;  }
+    a:visited{text-decoration: none!important;  }
+    a:hover{text-decoration: none!important;  }
+    a:active{text-decoration: none!important;  }
+    a:focus{text-decoration: none!important;  }
   .movie_header
     height c(102)
     padding 0 c(35)
@@ -281,6 +198,7 @@
               .movie_title
                 font-size c(32)
                 font-weight 800
+                color  #000000
                 span:nth-of-type(2)
                   margin-left c(18)
                   i:nth-of-type(1)
@@ -304,11 +222,19 @@
                   font-weight 800
                   color #fba44b
                   margin-left  8px
+              .styleshow
+                font-size:c(24)
+                color #707070
+                margin c(20) 0
+                i:nth-of-type(1)
+                  color #ffa13d
               .zhuyan
                 font-size c(24)
                 color #717171
                 margin-bottom c(21)
               .fenlei
+                padding-bottom c(20)
+                box-sizing border-box
                 span
                   padding c(8)
                   border-radius 6px
@@ -325,14 +251,23 @@
               height c(58)
               line-height c(58)
               text-align center
-              background #ff6583
               font-size c(22)
               color #ffffff
               border-radius c(28)
-
-  .vux-sticky-box
-    height c(77)
-    .vux-tab-wrap
+   .movie_msg
+      display flex
+      width 100%
+      flex-direction column
+      .list_bottom
+        border-top 1px solid #eeeeee
+        padding-top:c(28)
+        height c(28)
+        font-size c(22)
+        i:nth-of-type(1)
+          color #f9a147
+        span
+          color #6b6b6b
+    .movie_section .vux-tab-wrap
       height c(77)
       padding-top 0
       .vux-tab-container

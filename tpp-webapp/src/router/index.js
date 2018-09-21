@@ -7,7 +7,11 @@ import Perform from '../pages/perform'
 import TQVideo from '../pages/tqvideo'
 import ShopCar from '../pages/ShopCar'
 import Cinema from '../pages/cinema'
-import Map from '../pages/map'
+import CinemaMap from '../pages/CinemaMap'
+import Detall from '../pages/detall'
+import Space from '../pages/space'
+import ChooseSeat from "../pages/chooseSeat"
+import Sing from '../pages/Sing'
 
 Vue.use(Router)
 
@@ -67,12 +71,39 @@ export default new Router({
       }
     },
     {
-      path:'/map',
-      component: Map,
+      path:'/CinemaMap',
+      component: CinemaMap,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/detall',
+      component: Detall,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/space',
+      component: Space,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/chooseseat',
+      component: ChooseSeat,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/Sing',
+      component: Sing,
       meta:{
         showFooter :false
       }
     }
-
   ]
 })

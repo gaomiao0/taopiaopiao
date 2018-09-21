@@ -57,15 +57,8 @@
           </div>
           <div class="mon2">
             <p class="mon2p">观影小食</p>
-            <a class="mon2a"><p>中份爆/空心薯1盒+可乐2杯+休闲食品1袋</p>
-              <span><i>38.8</i>元×<em>1</em></span>
-            </a>
-            <a class="mon2a"><p>中份爆/空心薯1盒+可乐2杯+休闲食品1袋</p>
-              <span><i>38.8</i>元×<em>1</em></span>
-            </a>
-
-            <a class="mon2a"><p>中份爆/空心薯1盒+可乐2杯+休闲食品1袋</p>
-              <span><i>38.8</i>元×<em>1</em></span>
+            <a class="mon2a" v-for="eat1 in eatc"><p>{{eat1.eatname}}</p>
+              <span><i>{{eat1.eatprice}}</i>元×<em>{{eat1.eatcount}}</em></span>
             </a>
           </div>
         </div>
@@ -91,30 +84,20 @@
                 "pj":30
               }
             ],
-            "eatc":[
-              {
-                "eatpic":"../../assets/img/car1.png",
-                "eatname":"中份爆/空心薯1盒+可乐2杯+休闲食品1袋",
-                "eatprice":"57.1",
-                "eatcount":"0"
-              },
-              {
-                "eatpic":"../../assets/img/car1.png",
-                "eatname":"中份爆/空心薯1盒+可乐2杯+休闲食品1袋",
-                "eatprice":"57.1",
-                "eatcount":"0"
-              },
-              {
-                "eatpic":"../../assets/img/car1.png",
-                "eatname":"中份爆/空心薯1盒+可乐2杯+休闲食品1袋",
-                "eatprice":"57.1",
-                "eatcount":"0"
-              },
-            ]
+            mmp1:{},
+            eatc:[]
           }
 
       },
       methods:{
+        getjsons(){
+          this.$http.get("http://localhost:3000/shopcardata")
+            .then((response)=> {
+              this.mmp1 = response.data
+              this.eatc=response.data.eatc1
+              console.log(this.eatc)
+            })
+        },
         mmp(){
           this.flag =  !this.flag
         },
@@ -130,22 +113,28 @@
               this.__counter(this.eatc)
           }
 
-        }
-      },
-      __counter(shopData){
-        this.totalMoney =0;
-        for(let i in shopData){
-              this.totalMoney += eatc[i].eatprice * eatc[i].eatcount;
+        },
+        __counter(shopData){
+          this.totalMoney =0;
+          for(let i in shopData){
+            this.totalMoney += this.eatc[i].eatprice * this.eatc[i].eatcount;
 
           }
-
+        }
       },
-      created(){
+
+      created() {
+        this.getjsons()
       }
     }
 </script>
 
 <style scoped>
+  a:link{text-decoration: none!important;  }
+  a:visited{ text-decoration: none !important;}
+  a:hover{text-decoration: none!important;  }
+  a:active{text-decoration: none!important;  }
+  a:focus{text-decoration: none!important;  }
 .zzc{
   width: 100%;
   height: 8rem;

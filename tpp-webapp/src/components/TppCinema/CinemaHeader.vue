@@ -1,44 +1,28 @@
 <template>
     <div class="header">
+      <div class="fixbox">
       <div class="h_top">
         <a class="iconfont icon-jiantou-copy"></a>
-        <h1>碟中谍6：全面瓦解</h1>
+        <h1>{{title}}</h1>
         <div>
-          <a class="iconfont icon-location"></a>
+          <router-link to="/CinemaMap" class="iconfont icon-location"></router-link>
           <a class="iconfont icon-sousuo"></a>
         </div>
       </div>
       <div class="h_cen">
-        <ul class="navbox">
-          <li :class="{li_active:flag==0}" @click="chose(0)">今天<span>09-18</span></li>
-          <li :class="{li_active:flag==1}" @click="chose(1)">明天<span>09-19</span></li>
-          <li :class="{li_active:flag==2}" @click="chose(2)">后天<span>09-20</span></li>
-          <li :class="{li_active:flag==3}" @click="chose(3)">周五<span>09-21</span></li>
-          <li :class="{li_active:flag==4}" @click="chose(4)">周六<span>09-22</span></li>
-          <li :class="{li_active:flag==5}" @click="chose(5)">周日<span>09-23</span></li>
-          <li :class="{li_active:flag==6}" @click="chose(6)">周一<span>09-24</span></li>
-        </ul>
+        <tab bar-active-color="#ff495f" active-color="#ff495f" default-color="#5f615f" custom-bar-width="217px">
+          <tab-item @on-item-click="goto(index)" v-for="(a,index) in nav1" :key="index">{{a.day}}<span>{{a.date}}</span></tab-item>
+        </tab>
       </div>
       <div class="h_bot">
         <ul class="navbox2">
-          <li @click="show(0)">
-            <span>区域<i class="iconfont icon-arrLeft-fill" ></i></span>
-          </li>
-          <li @click="show(1)">
-            <span>品牌<i class="iconfont icon-arrLeft-fill"></i></span>
-          </li>
-          <li @click="show(2)">
-            <span>离我最近<i class="iconfont icon-arrLeft-fill"></i></span>
-          </li>
-          <li @click="show(3)">
-            <span>时段<i class="iconfont icon-arrLeft-fill"></i></span>
-          </li>
-          <li @click="show(4)">
-            <span>特色<i class="iconfont icon-arrLeft-fill"></i></span>
+          <li @click="show(index)" v-for="(n,index) in nav" :key="index" :class="{chose:active==index}">
+            <span>{{n}}<i class="iconfont icon-arrLeft-fill" ></i></span>
           </li>
         </ul>
       </div>
-      <div class="selections" ref="selections">
+      </div>
+      <div class="selections" ref="selections" v-if="isshow">
         <div v-show="active==0" class="secbox area">
           <ul class="list">
           <li><div class="active_div">不限区域</div></li>
@@ -283,28 +267,66 @@
 </template>
 
 <script>
+    import TabItem from "vux/src/components/tab/tab-item";
+    import Tab from "vux/src/components/tab/tab";
     export default {
         name: "CinemaHeader",
-        data(){
+      components: {Tab, TabItem},
+      props:["title"],
+      data(){
             return {
               flag:0,
-              active:6
+              active:6,
+              nav1:[
+                {"day":"今天",
+                  "date":"09-18"
+
+                },{"day":"明天",
+                  "date":"09-19"
+
+                },{"day":"后天",
+                  "date":"09-20"
+
+                },{"day":"周五",
+                  "date":"09-21"
+
+                },{"day":"周六",
+                  "date":"09-22"
+
+                },{"day":"周日",
+                  "date":"09-23"
+
+                },{"day":"周一",
+                  "date":"09-24"
+                }
+              ],
+              nav:["区域","品牌","离我最近","时段","特色"],
+              isshow:true,
             }
         },
         methods:{
           show(n){
-            this.$refs.selections.style.display = "block";
-            this.active = n;
-            $(".navbox2 li").css({"color":"#323332"});
-            $(".navbox2 li").eq(n).css({"color":"#ff495f"})
-            $(".navbox2 li").eq(n).find(".iconfont").css({"transform":"rotateZ(180deg)"})
+            if(this.active==n){
+              this.active=6
+              this.hide()
+            }else{
+              this.$refs.selections.style.display = "block";
+              // $(".selections").toggleClass("show")
+              this.active = n;
+              $(".navbox2 li").css({"color":"#323332"});
+              $(".navbox2 li").eq(n).css({"color":"#ff495f"})
+              $(".navbox2 li").eq(n).find(".iconfont").css({transform:"rotateZ(180deg)"})
+            }
           },
           hide(){
             this.$refs.selections.style.display = "none";
-            $(".navbox2 li").css({"color":"#323332"})
+            $(".navbox2 li").css({"color":"#323332"});
           },
           chose(m){
             this.flag = m
+          },
+          goto(n){
+            this.$emit("child-say",n)
           }
         }
     }
@@ -314,12 +336,18 @@
 c(k){
   (k/75)rem
 }
+a:link{text-decoration: none!important;  }
+a:visited{text-decoration: none!important;  }
+a:hover{text-decoration: none!important;  }
+a:active{text-decoration: none!important;  }
+a:focus{text-decoration: none!important;  }
 .header{
   width 100%
   position fixed
   top 0
   left 0
   z-index 999
+
   .h_top{
     height c(100)
     border-bottom 2px solid #efefef
@@ -331,6 +359,7 @@ c(k){
     color #000000
     justify-content space-between
     font-weight 600
+    background #ffffff
     h1{
       font-size c(33)
     }
@@ -341,7 +370,7 @@ c(k){
   }
   .h_cen{
     height c(83)
-    border-bottom 2px solid #f9f7f9
+    border-bottom 5px solid #f9f7f9
     .navbox{
       height:100%
       display flex
@@ -363,6 +392,7 @@ c(k){
   .h_bot{
     height c(95)
     border-bottom 2px solid #f9f7f9
+    background #ffffff
     .navbox2{
       display flex
       height 100%
@@ -379,7 +409,7 @@ c(k){
         text-overflow ellipsis
 
       }
-      .cho{
+      .chose{
         color #ff495f
       }
     }
@@ -504,6 +534,12 @@ c(k){
         }
       }
     }
+  }
+  .show{
+    display block
+  }
+  .fixbox{
+    background #ffffff
   }
 }
 .icon-arrLeft-fill{

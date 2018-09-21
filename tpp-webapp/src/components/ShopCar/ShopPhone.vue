@@ -29,6 +29,11 @@
 </script>
 
 <style scoped>
+  a:link{text-decoration: none!important;  }
+  a:visited{ text-decoration: none !important;}
+  a:hover{text-decoration: none!important;  }
+  a:active{text-decoration: none!important;  }
+  a:focus{text-decoration: none!important;  }
 .pho{
   /*height: 5rem;*/
   background: #f7f7f7;
