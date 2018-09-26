@@ -10,7 +10,7 @@
 <script>
 import tqvideoHeader from "../components/tqvideo/tqvideoHeader.vue"
 import tqvideoContent from "../components/tqvideo/tqvideoContent.vue"
-
+import { Indicator } from 'mint-ui';
     export default {
         name: "tqvideo",
         components:{
@@ -23,13 +23,18 @@ import tqvideoContent from "../components/tqvideo/tqvideoContent.vue"
                 loding:false
             }
         },
-    mounted(){
+    created(){
+        Indicator.open({
+          text: 'Loading...',
+          spinnerType: 'fading-circle'
+        });
         this.loding = true
         let that = this
          this.$http.get('http://localhost:3000/tqvideo')
             .then((data) => {
                 this.data = data.data
                 that.loding = false
+                Indicator.close();
         }, () => {
             console.log('这里是用了vue-source,后端没有接口')
         })

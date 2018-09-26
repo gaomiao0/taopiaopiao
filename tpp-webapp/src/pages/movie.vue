@@ -124,6 +124,7 @@
 
 <script>
     import { Tab, TabItem,Sticky,Swiper,SwiperItem } from 'vux'
+    import { Indicator } from 'mint-ui';
     const list = () => ['正在热映', '即将上映']
     export default {
         name: "home",
@@ -147,9 +148,14 @@
           console.log('on item click:', index)
         },
         fetchMovies(){
+          Indicator.open({
+            text: 'Loading...',
+            spinnerType: 'fading-circle'
+          });
           this.$http.get("http://localhost:3000/movie")
             .then((response)=> {
               this.movies = response.data
+              Indicator.close();
               // console.log(this.movies)
             })
         },

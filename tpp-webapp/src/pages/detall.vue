@@ -617,6 +617,7 @@
 
 <script>
     import Divider from "vux/src/components/divider/index";
+    import { Indicator } from 'mint-ui';
     export default {
         name: "detall",
       data(){
@@ -627,9 +628,14 @@
       components: {Divider},
       methods:{
           getjson(id){
+            Indicator.open({
+              text: 'Loading...',
+              spinnerType: 'fading-circle'
+            });
             this.$http.get("http://localhost:3000/movies/"+id)
               .then((response)=> {
                 this.movie = response.data
+                Indicator.close();
                 // console.log(this.movie)
               })
           },

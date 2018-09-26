@@ -12,7 +12,7 @@
           <i class="iconfont icon-cuo"></i>
         </span>
       </p>
-      <img class="all_pic" :src=tppnatural.img />
+      <img class="all_pic" v-lazy=tppnatural.img />
     </a>
   </div>
 </template>

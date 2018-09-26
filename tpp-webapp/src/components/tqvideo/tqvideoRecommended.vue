@@ -10,22 +10,22 @@
                         <img :src="con.touxiang" alt="">
                         <span>{{con.name}}</span>
                         <li @click="Attention(cid)">
-                            <img :src="con.guan" v-show="isguan[cid]==false" class="gua">
-                            <img :src="con.yiguan" v-show="isguan[cid]==true" class="gua">
+                            <img v-lazy="con.guan" v-show="isguan[cid]==false" class="gua">
+                            <img v-lazy="con.yiguan" v-show="isguan[cid]==true" class="gua">
                         </li>
                       
                     </div>
                     <div class="tqvContent box">
                         <div class="tqvPraise box box1 box2">
-                            <img :src="con.zanF" @click="praise(cid)" v-show="iszan==false">
-                            <img :src="con.zanT" @click="praises(cid)" v-show="iszan==true">
+                            <img v-lazy="con.zanF" @click="praise(cid)" v-show="iszan==false">
+                            <img v-lazy="con.zanT" @click="praises(cid)" v-show="iszan==true">
                             <span>{{con.zanNum}}</span>
                         </div>
                         <div class="tqvTxt box box1 box2">
-                            <img :src="con.mes">
+                            <img v-lazy="con.mes">
                             <span>{{con.mesn}}</span>
                         </div>
-                        <img :src="con.san" class="box1" @click="isShow(cid)">
+                        <img v-lazy="con.san" class="box1" @click="isShow(cid)">
                     </div>
                 </router-link>
                     <img class="taopiao" :src="con.logo" v-if="con.logo">

@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="header">
-        <span><i class="iconfont icon-arrow-right-copy"></i></span>
+        <span><i @click="goback" class="iconfont icon-arrow-right-copy"></i></span>
         <span>选择城市</span>
       </div>
       <div class="secth">
@@ -24,11 +24,14 @@
         	}
         },
         methods:{
+          goback(){
+            this.$router.go(-1)
+          },
         getjson(){
           this.$http.get("http://localhost:3000/city")
             .then((response)=> {
               this.citys = response.data
-              console.log(this.citys)
+              // console.log(this.citys)
             })
         },
           filterBy(cityes,value){

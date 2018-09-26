@@ -1,7 +1,7 @@
 <template>
 <div class="sec">
   <router-link class="seca" v-for="i in secc" v-bind:to="'/Sing/'+i.id" :key="i.id">
-    <img :src=i.secpic>
+    <img v-lazy=i.secpic>
     <div class="secdiv">
       <p class="secp1">{{i.sec1}}</p>
       <a class="seca1"><span>{{i.sec2}}</span>|<span>{{i.sec3}}</span></a>
@@ -14,6 +14,7 @@
 </template>
 
 <script>
+  import { Indicator } from 'mint-ui';
     export default {
         name: "PerSec",
         data(){
@@ -24,10 +25,14 @@
               },
         methods:{
           getjsons(){
+            Indicator.open({
+              text: 'Loading...',
+              spinnerType: 'fading-circle'
+            });
             this.$http.get("http://localhost:3000/perform")
               .then((response)=> {
                 this.secc = response.data
-
+                Indicator.close();
               })
           },
         },

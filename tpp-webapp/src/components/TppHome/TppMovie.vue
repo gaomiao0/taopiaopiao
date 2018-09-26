@@ -11,7 +11,7 @@
       <ul class="movie_ul">
           <router-link v-bind:to="'/detail/'+k.id" class="movie_li" v-for="k in list" :key="k.id">
             <a class="movie_one" href="javascript:;">
-              <img :src=k.img />
+              <img v-lazy=k.img />
               <span class="giant" v-if="k.type">{{k.type}} {{k.style}}</span>
               <span class="score" v-if="k.score">淘票票评分 <i>{{k.score}}</i></span>
               <span class="score" v-if="k.want"><i>{{k.want}}</i> 人想看</span>

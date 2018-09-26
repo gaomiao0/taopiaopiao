@@ -24,27 +24,21 @@
   c(k) {
     (k / 75) rem
   }
-
   a:link {
     text-decoration: none !important;
   }
-
   a:visited {
     text-decoration: none !important;
   }
-
   a:hover {
     text-decoration: none !important;
   }
-
   a:active {
     text-decoration: none !important;
   }
-
   a:focus {
     text-decoration: none !important;
   }
-
   .con {
     width 100%
     background #f7f7f7

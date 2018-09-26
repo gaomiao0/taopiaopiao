@@ -2,9 +2,9 @@
   <div class="choice_two">
     <h2 class="news_tit">{{tppres.head}}</h2>
     <a class="news_pic" href="javascript:;">
-      <img :src=tppres.pic >
-      <img :src=tppres.pic1 >
-      <img :src=tppres.pic2 >
+      <img v-lazy=tppres.pic >
+      <img v-lazy=tppres.pic1 >
+      <img v-lazy=tppres.pic2 >
     </a>
     <p class="msg">
       <span class="message">

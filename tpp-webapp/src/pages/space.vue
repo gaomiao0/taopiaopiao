@@ -48,7 +48,7 @@
 
 <script>
   import TppSpaceSlider from "../components/TppSpace/TppSpaceSlider";
-
+  import { Indicator } from 'mint-ui';
   export default {
     name: "space",
     components: {TppSpaceSlider},
@@ -59,6 +59,10 @@
     },
     methods:{
       askdata(id){
+        Indicator.open({
+          text: 'Loading...',
+          spinnerType: 'fading-circle'
+        });
         this.loading=true;
         let that = this;
         this.$http.get("http://localhost:3000/cinema/"+id)
@@ -67,6 +71,7 @@
             this.cinema = response.data;
             // console.log(response.data)
             that.loading=false;
+            Indicator.close();
             // console.log(this.cinema)
           })
       },
@@ -75,7 +80,7 @@
       }
     },
     create(){
-      askdata(this.$route.params.id)
+      // askdata(this.$route.params.id)
     }
   }
 </script>

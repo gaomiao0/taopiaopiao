@@ -36,7 +36,7 @@
 <script>
     import TppHomeSlider from "../components/TppHome/TppHomeSlider";
     import TppMovie from "../components/TppHome/TppMovie";
-
+    import { Indicator } from 'mint-ui';
     export default {
       name: "home",
       components: {TppMovie, TppHomeSlider},
@@ -66,6 +66,10 @@
           })
         },
         getData(){
+          Indicator.open({
+            text: 'Loading...',
+            spinnerType: 'fading-circle'
+          });
           this.loading = true
           let that = this
           this.$http.get("http://localhost:3000/home").then((response)=>{
@@ -76,6 +80,7 @@
             this.video = response.data[0].video
             this.resources = response.data[0].resources
             that.loading = false
+            Indicator.close();
             // console.log(response.data)
           })
           this.$http.get("http://localhost:3000/hanker").then((response)=>{

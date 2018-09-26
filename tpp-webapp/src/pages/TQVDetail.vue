@@ -15,11 +15,6 @@ export default {
         tqvdHeader,
         tqvdeConatent,
         tqvdFoot
-    },
-    data(){
-        return{
-            
-        }
     }
 }
 </script>

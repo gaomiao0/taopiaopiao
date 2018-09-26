@@ -13,6 +13,7 @@ import Space from '../pages/space'
 import ChooseSeat from "../pages/chooseSeat"
 import Sing from '../pages/Sing'
 import TqvDetail from '../pages/TQVDetail'
+import city from "../pages/city"
 
 Vue.use(Router)
 
@@ -23,6 +24,13 @@ export default new Router({
       component: Movie,
       meta:{
         showFooter :true
+      }
+    },
+    {
+      path:'/city',
+      component: city,
+      meta:{
+        showFooter :false
       }
     },
     {

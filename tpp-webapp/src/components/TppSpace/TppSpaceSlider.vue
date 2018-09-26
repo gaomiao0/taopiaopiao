@@ -117,7 +117,7 @@
 <script>
   import { Tab, TabItem ,Swiper,Sticky, SwiperItem} from 'vux'
   import TppSnack from "./TppSnack";
-
+  import { Indicator } from 'mint-ui';
   export default {
     name: "TppSpaceSlider",
     components: {
@@ -156,8 +156,13 @@
         $('.line').animate({"left":$lines+"px"},200);
       },
       getDate(){
+        Indicator.open({
+          text: 'Loading...',
+          spinnerType: 'fading-circle'
+        });
         this.$http.get("http://localhost:3000/space").then((response)=>{
           this.spacedate = response.data
+          Indicator.close();
           // console.log(response.data)
         })
       }
