@@ -2,7 +2,7 @@
     <div class="header">
       <div class="fixbox">
       <div class="h_top">
-        <a class="iconfont icon-jiantou-copy"></a>
+        <a @click="goback" class="iconfont icon-jiantou-copy"></a>
         <h1>{{title}}</h1>
         <div>
           <router-link to="/CinemaMap" class="iconfont icon-location"></router-link>
@@ -308,14 +308,15 @@
           show(n){
             if(this.active==n){
               this.active=6
-              this.hide()
+              this.$refs.selections.style.display = "none";
+              $(".navbox2 li").css({"color":"#323332"});
             }else{
               this.$refs.selections.style.display = "block";
               // $(".selections").toggleClass("show")
               this.active = n;
               $(".navbox2 li").css({"color":"#323332"});
               $(".navbox2 li").eq(n).css({"color":"#ff495f"})
-              $(".navbox2 li").eq(n).find(".iconfont").css({transform:"rotateZ(180deg)"})
+              $(".navbox2 li").eq(n).find(".iconfont").addClass("animated rotateIn")
             }
           },
           hide(){
@@ -327,12 +328,15 @@
           },
           goto(n){
             this.$emit("child-say",n)
+          },
+          goback(){
+            this.$router.go(-1)
           }
         }
     }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
 c(k){
   (k/75)rem
 }
@@ -371,6 +375,9 @@ a:focus{text-decoration: none!important;  }
   .h_cen{
     height c(83)
     border-bottom 5px solid #f9f7f9
+    tab-item:first-child{
+      color #ff4c62
+    }
     .navbox{
       height:100%
       display flex

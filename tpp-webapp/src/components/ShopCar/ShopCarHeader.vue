@@ -1,7 +1,7 @@
 <template>
   <div>
   <div class="header">
-     <i class="iconfont icon-jiantou-copy headerleft"></i>
+     <i @click="goback" class="iconfont icon-jiantou-copy headerleft"></i>
     <div class="qrdd"> <p>确认订单</p></div>
     <div class="dtime">
       <span class="headerright"><i class="iconfont icon-shijian "></i></span>
@@ -9,11 +9,11 @@
     </div>
   </div>
 
-  <div class="moviemu">
- <p><span >反贪风暴3</span><i>1张</i></p>
-    <p>今天09-17 21:45 - 23:25 (国语2D)</p>
-    <p>西安民乐园万达广场店</p>
-    <p>RealD-9号厅 10排16座</p>
+  <div class="moviemu" v-for="s in sm">
+ <p><span >{{s.movie1}}</span><i>{{s.movie2}}</i>张</p>
+    <p>{{s.movie3}}</p>
+    <p>{{s.movie4}}</p>
+    <p>{{s.movie5}}</p>
   </div>
   </div>
 </template>
@@ -21,7 +21,24 @@
 <script>
     export default {
         name: "ShopCarHeader",
+      data(){
+        return{
+        sm:[]
+        }
+      },
+      methods:{
+        getjsons(){
+          this.$http.get("http://localhost:3000/ShopMovie")
+            .then((response)=> {
+              this.sm = response.data
+            })
+        },
+        goback(){
+          this.$router.go(-1)
+        }
+      },
       mounted(){
+
         $(function(){
           var m=9;
           var s=11;
@@ -94,6 +111,9 @@
         }
       });
     });
+      },
+      created(){
+        this.getjsons();
       }
     }
 

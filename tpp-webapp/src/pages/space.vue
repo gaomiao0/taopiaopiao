@@ -1,7 +1,7 @@
 <template>
   <div class="bigbox">
     <div class="header">
-      <a class="header_left" href="javascript:;">
+      <a class="header_left" @click="goback">
         <i class="iconfont icon-arrow-right-copy"></i>
       </a>
       <span></span>
@@ -23,10 +23,10 @@
           <span>4D厅</span>
         </p>
       </div>
-      <a class="address" href="javascript:;">
+      <router-link to="/CinemaMap" class="address" >
         <img src="../assets/img/d-76.jpg" />
         <i class="iconfont icon-dingwei"></i>
-      </a>
+      </router-link>
     </div>
     <div class="favorable">
       <a href="javascript:;">
@@ -51,11 +51,36 @@
 
   export default {
     name: "space",
-    components: {TppSpaceSlider}
+    components: {TppSpaceSlider},
+    data(){
+      return{
+        cinema:{}
+      }
+    },
+    methods:{
+      askdata(id){
+        this.loading=true;
+        let that = this;
+        this.$http.get("http://localhost:3000/cinema/"+id)
+          .then((response)=>{
+            // console.log(response)
+            this.cinema = response.data;
+            // console.log(response.data)
+            that.loading=false;
+            // console.log(this.cinema)
+          })
+      },
+      goback(){
+        this.$router.go(-1)
+      }
+    },
+    create(){
+      askdata(this.$route.params.id)
+    }
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   c(k){
     (k/75)rem
   }

@@ -1,9 +1,7 @@
 <template>
   <div class="nav">
   <div class="container">
-
     <div class="swiper-container swiper1">
-
       <div class="swiper-wrapper">
 
         <div class="swiper-slide selected" >全部</div>
@@ -27,9 +25,8 @@
         <div class="swiper-slide">动漫</div>
 
       </div>
-<PerXz></PerXz>
+      <PerXz></PerXz>
     </div>
-
     <div class="swiper-container swiper2">
 
       <div class="swiper-wrapper">
@@ -61,8 +58,7 @@
       </div>
 
     </div>
-
-  </div>
+    </div>
   </div>
 </template>
 
@@ -74,72 +70,75 @@
     export default {
         name: "PerNav",
       components: {PerXz, PerSec},
-    }
-  $(function() {
+      mounted(){
+        $(function() {
 
-    function setCurrentSlide(ele, index) {
+          function setCurrentSlide(ele, index) {
 
-      $(".swiper1 .swiper-slide").removeClass("selected");
+            $(".swiper1 .swiper-slide").removeClass("selected");
 
-      ele.addClass("selected");
+            ele.addClass("selected");
 
-    }
+          }
 
-    var swiper1 = new Swiper('.swiper1', {
+          var swiper1 = new Swiper('.swiper1', {
 
-      slidesPerView: 5.5,
+            slidesPerView: 5.5,
 
-      paginationClickable: true,
+            paginationClickable: true,
 
-      spaceBetween: 10,
+            spaceBetween: 10,
 
-      freeMode: true,
+            freeMode: true,
 
-      loop: false,
+            loop: false,
 
-      onTab: function(swiper) {
+            onTab: function(swiper) {
 
-        var n = swiper1.clickedIndex;
+              var n = swiper1.clickedIndex;
 
+            }
+
+          });
+
+          swiper1.slides.each(function(index, val) {
+
+            var ele = $(this);
+
+            ele.on("click", function() {
+
+              setCurrentSlide(ele, index);
+
+              swiper2.slideTo(index, 500, false);
+
+            });
+
+          });
+
+          var swiper2 = new Swiper('.swiper2', {
+
+            direction: 'horizontal',
+
+            loop: false,
+
+            autoHeight: true,
+
+            onSlideChangeEnd: function(swiper) {
+
+              var n = swiper.activeIndex;
+
+              setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
+
+              swiper1.slideTo(n, 500, false);
+
+            }
+
+          });
+
+        });
       }
+    }
 
-    });
-
-    swiper1.slides.each(function(index, val) {
-
-      var ele = $(this);
-
-      ele.on("click", function() {
-
-        setCurrentSlide(ele, index);
-
-        swiper2.slideTo(index, 500, false);
-
-      });
-
-    });
-
-    var swiper2 = new Swiper('.swiper2', {
-
-      direction: 'horizontal',
-
-      loop: false,
-
-      autoHeight: true,
-
-      onSlideChangeEnd: function(swiper) {
-
-        var n = swiper.activeIndex;
-
-        setCurrentSlide($(".swiper1 .swiper-slide").eq(n), n);
-
-        swiper1.slideTo(n, 500, false);
-
-      }
-
-    });
-
-  });
 </script>
 
 <style scoped>

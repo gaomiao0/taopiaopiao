@@ -15,15 +15,15 @@
         }
       },
       methods:{
-        getjsons(){
-          this.$http.get("http://localhost:3000/secc/1")
+        getjsons(id){
+          this.$http.get("http://localhost:3000/perform/"+id)
             .then((response)=> {
               this.sec3 = response.data
             })
         },
       },
       created(){
-        this.getjsons();
+        this.getjsons(this.$route.params.id);
       }
 
     }

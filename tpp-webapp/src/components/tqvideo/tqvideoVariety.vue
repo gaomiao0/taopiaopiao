@@ -1,3 +1,4 @@
+<script src="../../../../../kaolashopping/kaolashopping/kl-project/kl-api-server/routes/index.js"></script>
 <template>
      <div class="tqvideoFive" v-show="ischeck==4">
         <div class="tqvideoOneBox">

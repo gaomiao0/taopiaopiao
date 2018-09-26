@@ -1,6 +1,6 @@
 <template>
 <div class="sec">
-  <div class="seca" v-for="i in secc">
+  <router-link class="seca" v-for="i in secc" v-bind:to="'/Sing/'+i.id" :key="i.id">
     <img :src=i.secpic>
     <div class="secdiv">
       <p class="secp1">{{i.sec1}}</p>
@@ -8,7 +8,7 @@
       <p class="secp2"><span>{{i.sec4}}</span>-<span>{{i.sec5}}</span>元</p>
       <p class="secp3">{{i.sec65}}</p>
     </div>
-  </div>
+  </router-link>
 
 </div>
 </template>
@@ -26,7 +26,8 @@
           getjsons(){
             this.$http.get("http://localhost:3000/perform")
               .then((response)=> {
-                this.secc = response.data.secc
+                this.secc = response.data
+
               })
           },
         },
@@ -37,7 +38,27 @@
 </script>
 
 <style scoped>
-.sec{
+  a:link {
+    text-decoration: none !important;
+  }
+
+  a:visited {
+    text-decoration: none !important;
+  }
+
+  a:hover {
+    text-decoration: none !important;
+  }
+
+  a:active {
+    text-decoration: none !important;
+  }
+
+  a:focus {
+    text-decoration: none !important;
+  }
+
+  .sec{
   height: 30rem;
   /*background: pink;*/
   font-size: 0.5rem;

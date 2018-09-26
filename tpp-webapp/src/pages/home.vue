@@ -28,6 +28,7 @@
                 :resources="resources"
                 :video="video"
                 v-if="!loading"
+                @gotode="gotodetail()"
       ></TppMovie>
     </div>
 </template>
@@ -75,18 +76,35 @@
             this.video = response.data[0].video
             this.resources = response.data[0].resources
             that.loading = false
-            console.log(response.data)
+            // console.log(response.data)
           })
+          this.$http.get("http://localhost:3000/hanker").then((response)=>{
+            this.homemovie = response.data
+          })
+        },
+        /*gotodetail(n){
+
+        },*/
+        reurl(){
+          let url = location.href; //把当前页面的地址赋给变量 url
+          var times = url.split("?"); //分切变量 url 分隔符号为 "?"
+          if(times[1] != 1){ //如果?后的值不等于1表示没有刷新
+            url += "?1"; //把变量 url 的值加入 ?1
+            self.location.replace(url); //刷新页面
+          }
         }
       },
       created(){
         this.getScroll()
         this.getData()
+      },
+      mounted(){
+        // this.reurl()
       }
     }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   c(k){
     (k/75)rem
   }

@@ -4,18 +4,21 @@
                 <video controls :poster="con.videoimg">
                     <source :src="con.video"/>
                 </video>
-                <p class="tqvIntroduce">{{con.title}}</p>
-                <div class="tqvMessage box">
+                <p class="tqvIntroduce" @click="goDetai(cid)">{{con.title}}</p>
+                <router-link to="/TqvDetail" class="tqvMessage box">
                     <div class="tqvSource box">
                         <img :src="con.touxiang" alt="">
                         <span>{{con.name}}</span>
-                        <img :src="con.guan" alt="" @click="Attention(cid)" v-if="isguan">
-                        <img :src="con.yiguan" alt="" @click="Attention(cid)" v-else>
+                        <li @click="Attention(cid)">
+                            <img :src="con.guan" v-show="isguan[cid]==false" class="gua">
+                            <img :src="con.yiguan" v-show="isguan[cid]==true" class="gua">
+                        </li>
+                      
                     </div>
                     <div class="tqvContent box">
                         <div class="tqvPraise box box1 box2">
-                            <img :src="con.zanF" @click="praise(cid)" v-if="iszan">
-                            <img :src="con.zanT"  @click="praise(cid)" v-else>
+                            <img :src="con.zanF" @click="praise(cid)" v-show="iszan==false">
+                            <img :src="con.zanT" @click="praises(cid)" v-show="iszan==true">
                             <span>{{con.zanNum}}</span>
                         </div>
                         <div class="tqvTxt box box1 box2">
@@ -24,7 +27,7 @@
                         </div>
                         <img :src="con.san" class="box1" @click="isShow(cid)">
                     </div>
-                </div>
+                </router-link>
                     <img class="taopiao" :src="con.logo" v-if="con.logo">
                 <transition name="fade">
                     <div class="mask" v-show="show===cid"></div>
@@ -36,30 +39,7 @@
                                 <img :src="sha.imgage" alt="">
                                 <p>{{sha.txt}}</p>
                             </div>
-                            <!-- <div class="share">
-                                <img src="../../assets/img/tqv-62.png" alt="">
-                                <p>支付宝</p>
-                            </div>
-                            <div class="share">
-                                <img src="../../assets/img/tqv-63.png" alt="">
-                                <p>微信好友</p>
-                            </div>
-                            <div class="share">
-                                <img src="../../assets/img/tqv-64.png" alt="">
-                                <p>微信好友</p>
-                            </div>
-                            <div class="share">
-                                <img src="../../assets/img/tqv-65.png" alt="">
-                                <p>微信好友</p>
-                            </div>
-                            <div class="share">
-                                <img src="../../assets/img/tqv-66.png" alt="">
-                                <p>微信好友</p>
-                            </div>
-                            <div class="share">
-                                <img src="../../assets/img/tqv-67.png" alt="">
-                                <p>微信好友</p>
-                            </div> -->
+  
                         </div>
                         <div class="bg">
                             <div class="Interest">
@@ -67,10 +47,7 @@
                                     <img :src="shar.imgage" alt="">
                                     <p>{{shar.txt}}</p>
                                 </div>
-                                <!-- <div class="share">
-                                    <img src="../../assets/img/tqv-69.png" alt="">
-                                    <p>微信好友</p>
-                                </div> -->
+                     
                             </div>
                         </div>
                         <div class="cancel">
@@ -80,57 +57,7 @@
                 </transition>
             </div>
 
-
-
-            
-            <!-- <div class="tqvideoOneBox">
-                <video controls  poster="../../assets/img/tqv-bg1.png">
-                    <source src="//cloud.video.taobao.com/play/u/1745440806/p/2/e/6/t/1/50262610295.mp4"/>>
-                </video>
-                <p class="tqvIntroduce">一部国产良心鬼怪电影，把中国捉妖术演活了，堪称神来之笔</p>
-                <div class="tqvMessage box">
-                    <div class="tqvSource box">
-                        <img src="../../assets/img/tqv-21.png" alt="">
-                        <span>大荒电影</span>
-                        <img src="../../assets/img/tqv-6.png" alt="">
-                    </div>
-                    <div class="tqvContent box">
-                        <div class="tqvPraise box box1 box2">
-                            <img src="../../assets/img/tqv-3.png" alt="">
-                            <span>81</span>
-                        </div>
-                        <div class="tqvTxt box box1 box2">
-                            <img src="../../assets/img/tqv-4.png" alt="">
-                            <span>14</span>
-                        </div>
-                        <img src="../../assets/img/tqv-5.png" alt="" class="box1">
-                    </div>
-                </div>
-            </div>
-            <div class="tqvideoOneBox">
-                <video controls poster="../../assets/img/tqv-bg1.png">
-                    <source src="//cloud.video.taobao.com/play/u/1745440806/p/2/e/6/t/1/50262610295.mp4"/>>
-                </video>
-                <p class="tqvIntroduce">一部国产良心鬼怪电影，把中国捉妖术演活了，堪称神来之笔</p>
-                <div class="tqvMessage box">
-                    <div class="tqvSource box">
-                        <img src="../../assets/img/tqv-21.png" alt="">
-                        <span>大荒电影</span>
-                        <img src="../../assets/img/tqv-6.png" alt="">
-                    </div>
-                    <div class="tqvContent box">
-                        <div class="tqvPraise box box1 box2">
-                            <img src="../../assets/img/tqv-3.png" alt="">
-                            <span>81</span>
-                        </div>
-                        <div class="tqvTxt box box1 box2">
-                            <img src="../../assets/img/tqv-4.png" alt="">
-                            <span>14</span>
-                        </div>
-                        <img src="../../assets/img/tqv-5.png" alt="" class="box1">
-                    </div>
-                </div>
-            </div> -->
+  
         </div>
 </template>
 
@@ -140,10 +67,10 @@ export default {
     data() {
       return {
         ischeck: '0',
-        isguan:true,
+        isguan:[false,false,false],
         imgs:'false',
-        zan:"",
-        iszan:true,
+        zan:[],
+        iszan:[],
         show:false,
       }
     },
@@ -154,11 +81,15 @@ export default {
         
     },
     methods: {
-        Attention:function(){
-           this.isguan==false?this.isguan=true:this.isguan=false;
+        Attention(cid){
+           this.isguan[cid]=!this.isguan[cid]
+           console.log(cid,this.isguan[cid])
         },
         praise(cid){
-            this.iszan==false?this.iszan=true:this.iszan=false;
+            this.iszan[cid]=!this.iszan[cid]
+            console.log(cid,this.iszan[cid])
+ 
+            
         },
         isShow(cid){
             this.show =cid
@@ -166,6 +97,12 @@ export default {
         cance(){
             this.show = false
         },
+        praises(cid){
+            this.iszan[cid]=!this.iszan[cid]
+        },
+        goDetai(cid){
+            this.$router.push({path:'/TQVDetail',query:{id:cid}})
+        }
      
     },
      mounted:function(){
@@ -173,6 +110,8 @@ export default {
         bus.$on("tabEvent",(data)=>{
             that.ischeck = data
         })
+        this.Attention()
+       
     }
 }
 </script>
@@ -232,7 +171,7 @@ export default {
     
    }
    .cancel{
-       margin-top c(30);
+       margin-top c(15);
        font-size c(50);
        background #fff;
        text-align center;

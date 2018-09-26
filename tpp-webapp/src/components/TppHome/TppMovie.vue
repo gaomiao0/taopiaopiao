@@ -9,7 +9,7 @@
           </a>
         </h1>
       <ul class="movie_ul">
-          <li class="movie_li" v-for="k in list" :key="k.id">
+          <router-link v-bind:to="'/detail/'+k.id" class="movie_li" v-for="k in list" :key="k.id">
             <a class="movie_one" href="javascript:;">
               <img :src=k.img />
               <span class="giant" v-if="k.type">{{k.type}} {{k.style}}</span>
@@ -21,7 +21,7 @@
               <span class="trade_one" v-if="k.showstyle">{{k.showstyle}}</span>
               <span class="trade_two" v-if="k.premise">{{k.premise}}</span>
             </a>
-          </li>
+          </router-link>
           <li class="movie_more">
             <a class="region" href="javascript:;">
               <span class="whole">全部</span>
@@ -120,11 +120,16 @@
   export default {
     name: "TppMovie",
     components: {TppVideo, TppNews, TppChoice},
-    props:["list","rightnow","natural","resources","video"]
+    props:["list","rightnow","natural","resources","video"],
+    methods:{
+      gotodetaid(n){
+        this.$emit("gotode",n)
+      }
+    }
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   c(k){
     (k/75)rem
   }
@@ -217,6 +222,7 @@
   }
   .movie_li{
     margin-right c(18)
+    color black
   }
   .movie_date{
     font-size c(24)

@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="nav2" @click="show(2)">
-        <span>{{sec2.sec2}}</span>
+        <span>{{sec21.sec2}}</span>
         <i class="iconfont icon-jiantou"></i>
       </div>
       <div class="nav1show" v-show="flag==2">
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="nav3">
-        <span>{{sec2.sec3}}</span>
+        <span>{{sec21.sec3}}</span>
         <img src="../../../static/img/map.png"/>
       </div>
     </div>
@@ -68,15 +68,14 @@
       data() {
         return {
           flag: 0,
-          sec2:{}
+          sec21:{}
         }
       },
       methods: {
-        getjsons(){
-          this.$http.get("http://localhost:3000/secc/1")
+        getjsons(id){
+          this.$http.get("http://localhost:3000/perform/"+id)
             .then((response)=> {
-              this.sec2 = response.data
-              console.log(response.data)
+              this.sec21 = response.data
             })
         },
         show(f) {
@@ -84,7 +83,7 @@
         }
       },
       created(){
-        this.getjsons();
+        this.getjsons(this.$route.params.id);
       }
     }
 </script>

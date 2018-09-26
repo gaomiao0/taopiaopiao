@@ -1,6 +1,6 @@
 <template>
     <li class="cinemas">
-      <a href="javascript:;">
+      <router-link to="/space">
         <h2>
           <span>{{cn.name}}</span>
           <span class="price"><b><i>{{cn.price}}</i>元</b> 起</span>
@@ -13,7 +13,7 @@
           <li v-for="(v,index) in cn.youhui"><span :style="{background:v.color}">{{v.type}}</span>{{v.content}}</li>
         </ul>
         <div class="recent">近期场次:<span>{{cn.changci}}</span></div>
-      </a>
+      </router-link>
     </li>
 </template>
 
@@ -24,7 +24,7 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   c(k) {
     (k / 75) rem
   }

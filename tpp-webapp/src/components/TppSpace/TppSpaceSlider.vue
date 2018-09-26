@@ -1,24 +1,50 @@
 <template>
   <div>
     <tab v-model="counter">
-      <tab-item class="vux-center" v-for="(item, index) in list2" :key="index"  @click="addbig(index)">
-        <img class="pic" :src=item :class="{ addstyle:index == counter}" /></tab-item>
+      <tab-item class="vux-center" v-for="(item, index) in spacedate" :key="index"  @click="addbig(index)">
+        <img class="pic" :src=item.img :class="{ addstyle:index == counter}" /></tab-item>
     </tab>
-    <swiper v-model="counter" :show-dots="false" class="movie_msg" height="1400px">
-      <swiper-item>
-
+    <swiper v-model="counter" :show-dots="false" class="movie_msg" height="1360px">
+      <swiper-item v-for="(k, index) in spacedate" :key="k.id">
         <div class="movietit">
-          <h2>反贪风暴3 <span>8.6分</span></h2>
-          <p>100分钟 | 剧情 | 古天乐 张智霖 郑嘉颖</p>
+          <h2>{{k.title}} <span>{{ k.score }}分</span></h2>
+          <p>{{ k.time }} | {{k.type}} | {{k.name}}</p>
         </div>
         <div class="lookdate">
             <a href="javascript:;" v-for="(n,index) in navLists" :class="{ addclick:temp == index}" @click="wait(index)" :key="n.id">{{n.text}}</a>
             <div class="line"></div>
           </div>
 
-        <div class="ticket theend" v-show="temp===0">
-          <p>今天已放映完</p>
-          <a href="javascript:;">看看其他日期</a>
+        <div class="ticket" v-show="temp===0">
+          <a class="ticket_a" href="javascript:;">
+            <span>
+              <b>卡</b>
+              <u>开通即可享购票超值会员价</u>
+            </span>
+            <span>
+              <em>13元开卡</em>
+              <i class="iconfont icon-jiantou"></i>
+            </span>
+          </a>
+          <div class="detail" v-for="n in k.movietime[0].today" :key="n.id">
+            <p class="detail_p">
+              <span>
+                <u>{{ n.start }}</u>
+                <i>{{ n.end }} 散场</i>
+              </span>
+              <span>
+                <em>{{ n.language }} {{ n.type }}</em>
+                <i>{{ n.affect }}</i>
+              </span>
+            </p>
+            <p class="detail_buy">
+              <span>
+                <i>{{ n.price }}元</i>
+                <u>影城卡34元</u>
+              </span>
+              <router-link to="/chooseseat">购票</router-link>
+            </p>
+          </div >
         </div>
         <div class="ticket" v-show="temp===1">
           <a class="ticket_a" href="javascript:;">
@@ -31,44 +57,25 @@
               <i class="iconfont icon-jiantou"></i>
             </span>
           </a>
-          <div class="detail">
+          <div class="detail" v-for="s in k.movietime[0].tommorrow" :key="s.id">
             <p class="detail_p">
               <span>
-                <u>22:20</u>
-                <i>00:00 散场</i>
+                <u>{{ s.start }}</u>
+                <i>{{ s.end }} 散场</i>
               </span>
               <span>
-                <em>国语 2D</em>
-                <i>2号临境音贵宾厅</i>
+                <em>{{ s.language }} {{ s.type }}</em>
+                <i>{{ s.affect }}</i>
               </span>
             </p>
             <p class="detail_buy">
               <span>
-                <i>37元</i>
+                <i>{{ s.price }}元</i>
                 <u>影城卡34元</u>
               </span>
               <a href="javascript:;">购票</a>
             </p>
-          </div>
-          <div class="detail">
-            <p class="detail_p">
-              <span>
-                <u>23:20</u>
-                <i>01:00 散场</i>
-              </span>
-              <span>
-                <em>国语 2D</em>
-                <i>中国巨幕杜比全景声影厅</i>
-              </span>
-            </p>
-            <p class="detail_buy">
-              <span>
-                <i>37元</i>
-                <u>影城卡34元</u>
-              </span>
-              <a href="javascript:;">购票</a>
-            </p>
-          </div>
+          </div >
         </div>
         <div class="ticket" v-show="temp===2">
           <a class="ticket_a" href="javascript:;">
@@ -81,20 +88,20 @@
               <i class="iconfont icon-jiantou"></i>
             </span>
           </a>
-          <div class="detail">
+          <div class="detail" v-for="v in k.movietime[0].aftertom" :key="v.id">
             <p class="detail_p">
               <span>
-                <u>22:20</u>
-                <i>00:00 散场</i>
+                <u>{{ v.start }}</u>
+                <i>{{ v.end }} 散场</i>
               </span>
               <span>
-                <em>国语 2D</em>
-                <i>2号临境音贵宾厅</i>
+                <em>{{ v.language }} {{ v.type }}</em>
+                <i>{{ v.affect }}</i>
               </span>
             </p>
             <p class="detail_buy">
               <span>
-                <i>37元</i>
+                <i>{{ v.price }}元</i>
                 <u>影城卡34元</u>
               </span>
               <a href="javascript:;">购票</a>
@@ -102,22 +109,6 @@
           </div>
         </div>
         <TppSnack></TppSnack>
-      </swiper-item>
-      <swiper-item>
-        <h2>碟中谍6：全面瓦解<span>9.0分</span></h2>
-        <p>148分钟 | 动作 | 汤姆·克鲁斯 亨利·卡维尔 西蒙·佩吉</p>
-      </swiper-item>
-      <swiper-item>
-        <h2>虎胆追凶 <span>15943</span>人想看</h2>
-        <p>100分钟 | 剧情 | 古天乐 张智霖 郑嘉颖</p>
-      </swiper-item>
-      <swiper-item>
-        <h2>碟中谍6 <span>8.6分</span></h2>
-        <p>100分钟 | 剧情 | 古天乐 张智霖 郑嘉颖</p>
-      </swiper-item>
-      <swiper-item>
-        <h2>碟中谍6 <span>8.6分</span></h2>
-        <p>100分钟 | 剧情 | 古天乐 张智霖 郑嘉颖</p>
       </swiper-item>
     </swiper>
   </div>
@@ -127,7 +118,6 @@
   import { Tab, TabItem ,Swiper,Sticky, SwiperItem} from 'vux'
   import TppSnack from "./TppSnack";
 
-  const list = () => ["../../static/img/d-19.jpg","../../static/img/d-20.jpg","../../static/img/d-21.jpg","../../static/img/d-22.jpg","../../static/img/d-23.jpg"]
   export default {
     name: "TppSpaceSlider",
     components: {
@@ -140,7 +130,6 @@
     },
     data(){
       return{
-        list2: list(),
         counter: 0,
         temp:0,
         navLists:[
@@ -153,7 +142,8 @@
           {
             "text":"后天09-22"
           }
-        ]
+        ],
+        spacedate:[]
       }
     },
     methods:{
@@ -164,7 +154,16 @@
         this.temp = index;
         let $lines = index*186+74;
         $('.line').animate({"left":$lines+"px"},200);
+      },
+      getDate(){
+        this.$http.get("http://localhost:3000/space").then((response)=>{
+          this.spacedate = response.data
+          // console.log(response.data)
+        })
       }
+    },
+    created(){
+      this.getDate()
     }
   }
 </script>
@@ -180,7 +179,6 @@
   a:focus{text-decoration: none!important;  }
   .movie_msg{
     text-align center
-    margin-top c(224)
     h2{
       font-size c(28)
       color #000
@@ -214,13 +212,11 @@
   }
   .vux-tab-wrap .vux-tab-container{
     height c(224)
+    position relative
   }
   .vux-tab-container .vux-tab{
     height c(224)
     background-color #3c5e8c
-  }
-  .vux-slider{
-    margin-top c(180)
   }
   .addstyle{
     width c(134)
@@ -230,6 +226,9 @@
   }
   .scrollable .vux-tab-ink-bar{
     opacity 0
+  }
+  .vux-tab-container .vux-tab .vux-tab-item{
+    margin 0
   }
   .vux-tab-item vux-center{
     text-align center
@@ -334,22 +333,6 @@
       border-radius c(30)
       background-color #fff
       padding c(10) c(18) c(12)
-    }
-  }
-  .theend{
-    padding c(56) 0
-    text-align center
-    p{
-      font-size c(30)
-      color #8e8e8e
-      margin-bottom c(38)
-    }
-    a{
-      font-size c(22)
-      color #919191
-      padding c(6) c(22)
-      border-radius c(24)
-      border 1px solid #919191
     }
   }
 </style>

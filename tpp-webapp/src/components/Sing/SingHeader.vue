@@ -1,12 +1,17 @@
 <template>
     <div class="Shead">
-      <p><i class="iconfont icon-arrow-right-copy"></i><span>详情</span><i></i></p>
+      <p><i @click="goback" class="iconfont icon-arrow-right-copy"></i><span>详情</span><i></i></p>
     </div>
 </template>
 
 <script>
     export default {
-        name: "SingHeader"
+        name: "SingHeader",
+      methods:{
+        goback(){
+          this.$router.go(-1)
+        }
+      }
     }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="movie_vue">
       <div class="movie_header">
-        <div><span>西安</span><i class="iconfont icon-arrLeft-fill"></i></div>
+        <div><router-link to="/city"><span class="xian">西安</span><i class="iconfont icon-arrLeft-fill"></i></router-link></div>
         <div><span class="on">电影</span><span>影院</span></div>
         <div><i class="iconfont icon-saoyisao"></i><i class="iconfont icon-search"></i></div>
       </div>
@@ -31,7 +31,7 @@
                   <div class="movie_lists">
                     <div class="movie_list" v-for="movie in movies">
                       <a href="#"><img :src=movie.img alt=""></a>
-                      <router-link to="/detall" class="movie_msg">
+                      <router-link class="movie_msg" v-bind:to="'/detail/'+movie.id">
                         <div class="list_right">
                           <div class="right_left">
                             <span class="movie_title"><span>{{movie.title}}</span><span><i v-if="movie.type">{{movie.type}}</i><i  v-if="movie.style">{{movie.style}}</i></span></span>
@@ -51,7 +51,70 @@
               </div>
             </swiper-item>
             <swiper-item>
-              <div class="tab-swiper vux-center">2</div>
+              <div class="tab-swiper vux-center">
+                <div class="two_box">
+                  <div class="ygp">
+                    <h1>预告片推荐</h1>
+                    <div class="sp">
+                      <a href="#"><img src="../assets/img/tcdgm.png" alt=""></a>
+                      <a href="#"><img src="../assets/img/tcdgm.png" alt=""></a>
+                      <a href="#"><img src="../assets/img/tcdgm.png" alt=""></a>
+                      <a href="#"><img src="../assets/img/tcdgm.png" alt=""></a>
+                    </div>
+                  </div>
+                  <div class="ygp">
+                    <h1>近期最受期待</h1>
+                    <div class="sp sps">
+                      <a href="#">
+                        <img src="../assets/img/zrqk.png" alt="">
+                        <span>昨日青空</span>
+                        <span>10月26日</span>
+                      </a>
+                      <a href="#">
+                        <img src="../assets/img/y.png" alt="">
+                        <span>影</span>
+                        <span>9月30日</span>
+                      </a>
+                      <a href="#">
+                        <img src="../assets/img/zrqk.png" alt="">
+                        <span>昨日青空</span>
+                        <span>10月26日</span>
+                      </a>
+                      <a href="#">
+                        <img src="../assets/img/y.png" alt="">
+                        <span>影</span>
+                        <span>9月30日</span>
+                      </a>
+                    </div>
+                  </div>
+                  <div class="ygp .movie_section">
+                    <h1>9月30日 周日</h1>
+                    <div class="section_con" style="padding: 0px;">
+                      <div class="movie_msg">
+                        <div class="movie_lists">
+                          <div class="movie_list" v-for="movie in movies">
+                            <a href="#"><img :src=movie.img alt=""></a>
+                            <router-link class="movie_msg" v-bind:to="'/detail/'+movie.id">
+                              <div class="list_right">
+                                <div class="right_left">
+                                  <span class="movie_title"><span>{{movie.title}}</span><span><i v-if="movie.type">{{movie.type}}</i><i  v-if="movie.style">{{movie.style}}</i></span></span>
+                                  <span class="grade" v-if="movie.score">淘票票分<i>{{movie.score}}</i></span>
+                                  <span class="styleshow" v-if="movie.want"><i>{{movie.want}}</i>人想看&nbsp;|&nbsp;<i>{{movie.show}}</i></span>
+                                  <span class="zhuyan">导演:<span>{{movie.director}}</span></span>
+                                  <span class="zhuyan">主演：<span>{{movie.protagonist[0]}}</span>&nbsp;<span>{{movie.protagonist[1]}}</span>&nbsp;<span>{{movie.protagonist[2]}}</span></span>
+                                  <span class="fenlei"><span v-if="movie.dayhot">{{movie.dayhot}}</span><span v-if="movie.weekhot">{{movie.weekhot}}</span><span v-if="movie.praise">{{movie.praise}}</span></span>
+                                </div>
+                                <span class="right_right" :style="{background:movie.color}">{{movie.showstyle}}</span>
+                              </div>
+                              <div class="list_bottom" v-if="movie.fragment"><i>{{movie.fragment}}</i>&nbsp;&nbsp;|&nbsp;&nbsp;<span>{{movie.fragmentmsg}}</span></div>
+                            </router-link>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </swiper-item>
           </swiper>
         </div>
@@ -87,7 +150,7 @@
           this.$http.get("http://localhost:3000/movie")
             .then((response)=> {
               this.movies = response.data
-              console.log(this.movies)
+              // console.log(this.movies)
             })
         },
       },
@@ -109,6 +172,8 @@
     a:hover{text-decoration: none!important;  }
     a:active{text-decoration: none!important;  }
     a:focus{text-decoration: none!important;  }
+  .xian
+    color #000
   .movie_header
     height c(102)
     padding 0 c(35)
@@ -276,5 +341,34 @@
           height c(77)
           .vux-tab-item
             font-size c(26)
-            line-height c(77)
+          .vux-tab-ink-bar-transition-backward
+            right 50%!important
+          .vux-tab-ink-bar-transition-forward
+            left 50%!important
+    .two_box
+      background #e5e5e5
+      .ygp
+        padding c(34) c(43)
+        background #ffffff
+        margin-bottom c(16)
+        h1
+          margin-bottom c(43)
+          color #323232
+          font-size c(28)
+          font-weight 800
+        .sp
+          display flex
+          a
+            margin-right c(20)
+        .sps
+          a
+            display flex
+            flex-direction column
+            span:nth-of-type(1)
+              margin:c(21) 0
+              color #202020
+              font-size c(28)
+            span:nth-of-type(2)
+              color #565656
+              font-size c(21)
 </style>

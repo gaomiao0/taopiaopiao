@@ -1,13 +1,17 @@
 #seat-map{
+  height:100%;
+  display: flex;
+  flex-direction: column;
   background: #f5f5f5;
+  overflow: scroll;
+  padding-bottom: 0.9rem;
+  margin-bottom: 3.2rem;
 }
 div.seatCharts-cell {
-  color: #182C4E;
-  height: 0.42rem;
-  width: 0.43rem;
-  line-height: 25px;
-  margin: 3px;
-  float: left;
+  color: transparent;
+  height: 0.52rem;
+  width: 0.52rem;
+  line-height: 0.52rem;
   text-align: center;
   outline: none;
   font-size: 13px;
@@ -16,11 +20,20 @@ div.seatCharts-seat {
   cursor: pointer;
 }
 div.seatCharts-row {
-  height: 35px;
+  height:300px;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+}
+div.seatCharts-row  .seatCharts-space{
+  color:#ffffff;
+  font-size:0.4rem ;
+  padding-left: 5px;
+  box-sizing: border-box;
 }
 div.seatCharts-seat.available {
   background: url("../img/unselected.png") no-repeat;
-  background-size:0.43rem 0.42rem ;
+  background-size:0.52rem 0.52rem ;
 }
 div.seatCharts-seat.focused {
   background-color: #76B474;
@@ -28,18 +41,18 @@ div.seatCharts-seat.focused {
 }
 div.seatCharts-seat.selected {
   background: url("../img/selected.png") no-repeat;
-  background-size:0.43rem 0.42rem ;
+  background-size:0.52rem 0.52rem ;
 }
 div.seatCharts-seat.unavailable {
   background: url("../img/bought.png") no-repeat;
-  background-size:0.43rem 0.42rem ;
+  background-size:0.50rem 0.52rem ;
 }
 div.seatCharts-container {
   width: 100%;
   height: 100%;
 }
 div.seatCharts-legend {
-  height:1rem;
+  height:1.2rem;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -49,27 +62,74 @@ ul.seatCharts-legendList {
   display: flex;
 }
 .seatCharts-legendItem{
+  display:flex;
+  align-items: center;
   line-height:1rem;
-  margin:0 5px;
+  margin:0 10px;
 }
-span.seatCharts-legendDescription {
+.seatCharts-legendItem div.seatCharts-seat.available{
+  width:0.6rem;
+  height:0.59rem;
+  background-size: 0.6rem 0.59rem;
+}
+.seatCharts-legendItem div.seatCharts-seat.unavailable{
+  width:0.6rem;
+  height:0.59rem;
+  background-size: 0.6rem 0.59rem;
+}
 
+span.seatCharts-legendDescription {
+margin:0 10px;
 }
 .checkout-button {
+  height:1.52rem;
+  line-height:1.52rem;
+  background:#ff6d8d ;
+  color:#ffffff;
+  font-size:0.45rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.footer #selected-seats{
+  border-top:1px solid #ebebeb;
+  height:1.68rem;
+  display: flex;
+  align-items: center;
+  padding:0.1rem 0.41rem;
+  box-sizing: border-box;
+  overflow-x: scroll;
+}
+.footer #selected-seats li{
+  width:2.32rem;
+  height:1.05rem;
+  background:url("../img/gseat1.png");
+  background-size:2.32rem 1.05rem;
+  display: flex;
+  align-items: center;
+  color:#8b8b8b;
+  padding-left:0.47rem;
+  box-sizing: border-box;
+  margin-right:0.2rem;
+}
+.footer #selected-seats li .tip{
+  font-size:0.32rem;
+  color:#000000;}
+.footer #selected-seats li .tip .price{
+  color:#ff3d56;
+  display: flex;}
+.footer #selected-seats li .tip .price b{
+  width:0.32rem;
+  height:0.32rem;
+  text-align: center;
+  font-size:0.213rem;
+  color:#ffffff;
+  background: #fea144;
+  border-radius: 6px;
+  margin-top:5px;
+  margin-right:3px;
+}
+.footer #selected-seats li .icon-cuo{
+  font-size: 0.47rem;
+  margin-left:5px;
+}
 
-}
-#selected-seats {
-
-}
-#selected-seats li{
-  float:left;
-  width:72px;
-  height:26px;
-  line-height:26px;
-  border:1px solid #d3d3d3;
-  background:#f7f7f7;
-  margin:6px;
-  font-size:14px;
-  font-weight:bold;
-  text-align:center
-}

@@ -1,37 +1,37 @@
 <template>
   <div class="bigdetall">
     <div class="detall">
-      <div class="detall_header">
-        <div class="bg_header">
+      <div class="detall_header" v-bind:style="{'background-image':'url('+ movie.src+ ')'}">
+        <div class="bg_header" :style="{background:movie.color}">
         </div>
       </div>
       <div class="header_section">
         <div class="msg">
-          <span>反贪风暴3</span>
-          <span>L風暴</span>
-          <span>剧情 / 犯罪 / 动作</span>
-          <span>中国香港 | 100分钟</span>
-          <span>2018-09-14 在中国大陆上映</span>
+          <span>{{movie.title}}</span>
+          <span>{{movie.subtitle}}</span>
+          <span>{{movie.type}}</span>
+          <span>{{movie.area}} | {{movie.tiem}}</span>
+          <span>{{movie.online}}</span>
         </div>
-        <a href="#"><img src="../assets/img/imgs.jpg" alt=""></a>
+        <a href="#"><img :src="movie.imgs" alt=""></a>
       </div>
       <div class="header_header">
-        <a href="#"><i class="iconfont icon-arrow-right-copy"></i></a>
+        <a @click="goback"><i class="iconfont icon-arrow-right-copy"></i></a>
         <a href="#"><i class="iconfont icon-fenxiang1"></i></a>
       </div>
     </div>
     <div class="scroe">
       <div class="scroe_header">
         <span class="sc_sc">
-          <span class="sc_se"><i>8.6</i><a href="#"><img src="../assets/img/xx.jpg"/></a></span>
-          <span><i class="iconfont icon-taopiaopiaoicon"></i>淘票票评分171,813人</span>
+          <span class="sc_se"><i>{{movie.score}}</i><a href="#"><img src="../assets/img/xx.jpg"/></a></span>
+          <span><i class="iconfont icon-taopiaopiaoicon"></i>淘票票评分{{movie.people}}人</span>
         </span>
         <span class="sc_sc">
-          <span>70%</span>
+          <span>{{movie.recomend}}</span>
           <span><i class="iconfont icon-weibo"></i>大V推荐度</span>
         </span>
         <span class="sc_sc">
-          <span>245002</span>
+          <span>{{movie.want}}</span>
           <span>想看人数</span>
         </span>
       </div>
@@ -40,7 +40,7 @@
         <span><i class="iconfont icon-xing"></i>看过</span>
       </div>
       <div class="scroe_msg scroe_hidden">
-        <p>故事讲述ICAC (廉政公署) 陆志廉（古天乐饰），JFIU (联合财富情报组) 刘保强（张智霖饰）分别侦查贪污及洗黑钱案，但苦无线索，这时廉政公署L组 (内部纪律调查组) 程德明（郑嘉颖饰）收到举报，指陆志廉收贿1200万，陆无法辩解实时停职。刘发现陆被诬陷, 并跟一直调查的洗黑钱案有着千丝万缕关系，同时怀疑银行主任游子新（栢天男饰）协助罪恶集团洗黑钱；陆冒险搜集罪证却遭禁锢，命悬一线.......</p>
+        <p>{{movie.desc}}</p>
         <a href="#" class="launch">展开</a>
       </div>
   </div>
@@ -49,103 +49,13 @@
       <div class="per_sec">
         <span class="per_span per_one per_spanm">
           <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
+          <span>导演</span>
+          <span>{{movie.director}}</span>
         </span>
-        <span class="per_span per_spanm">
+        <span class="per_span per_spanm"  v-for="main in movie.mains">
           <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/gtl.jpg" alt=""></a>
-          <span>古天乐</span>
-          <span>饰  陆志廉</span>
-        </span>
-        <span class="per_span per_spanm">
-          <a href="#"><img src="../assets/img/zll.jpg" alt=""></a>
-          <span>张智霖</span>
-          <span>饰  刘保强</span>
+          <span>{{main.actor}}</span>
+          <span v-if="main.name">饰  {{main.name}}</span>
         </span>
       </div>
       <a href="#" class="more_pre">全部21个视频</a>
@@ -701,7 +611,7 @@
         <span><i class="iconfont icon-jiantou"></i></span>
       </div>
     </div>
-    <div class="foot_box">选座购票</div>
+    <router-link v-bind:to="'/cinema/'+movie.id" class="foot_box">选座购票</router-link>
   </div>
 </template>
 
@@ -709,11 +619,31 @@
     import Divider from "vux/src/components/divider/index";
     export default {
         name: "detall",
-      components: {Divider}
+      data(){
+          return{
+            movie:{}
+          }
+      },
+      components: {Divider},
+      methods:{
+          getjson(id){
+            this.$http.get("http://localhost:3000/movies/"+id)
+              .then((response)=> {
+                this.movie = response.data
+                // console.log(this.movie)
+              })
+          },
+        goback(){
+            this.$router.go(-1)
+        }
+      },
+      created(){
+        this.getjson(this.$route.params.id)
+      }
     }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped lang="stylus" rel="stylesheet/stylus">
   c(p)
     (p/75)rem
   .detall
@@ -721,7 +651,6 @@
     .detall_header
       position relative
       height c(436)
-      background url("../../static/img/bgimg.jpg")
       width: 100%;
       background-size: cover;
       -webkit-filter: blur(15px);
@@ -736,7 +665,6 @@
         transition: background-color .6s;
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
-        background-color: rgb(64, 99, 144);
     .header_header
       padding 0 c(42)
       box-sizing border-box
@@ -772,6 +700,9 @@
           font-weight 800
         span:nth-of-type(2)
           margin-bottom c(28)
+      img
+        width c(216)
+        height c(312)
   .scroe
     padding c(50) c(42) 0
     box-sizing border-box
@@ -869,10 +800,18 @@
           color #1a1a1a
           font-size c(28)
           font-weight 800
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap
+          width c(167)
         span:nth-of-type(2)
           color #464646
           font-size c(24)
           font-weight 800
+          overflow:hidden;
+          text-overflow:ellipsis;
+          white-space:nowrap
+          width c(167)
         .video_class
           width c(533)
           height c(300)

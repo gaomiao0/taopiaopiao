@@ -12,6 +12,7 @@ import Detall from '../pages/detall'
 import Space from '../pages/space'
 import ChooseSeat from "../pages/chooseSeat"
 import Sing from '../pages/Sing'
+import TqvDetail from '../pages/TQVDetail'
 
 Vue.use(Router)
 
@@ -64,7 +65,7 @@ export default new Router({
       }
     },
     {
-      path:'/cinema',
+      path:'/cinema/:id',
       component: Cinema,
       meta:{
         showFooter :false
@@ -78,14 +79,14 @@ export default new Router({
       }
     },
     {
-      path:'/detall',
+      path:'/detail/:id',
       component: Detall,
       meta:{
         showFooter :false
       }
     },
     {
-      path:'/space',
+      path:'/space/',
       component: Space,
       meta:{
         showFooter :false
@@ -99,8 +100,15 @@ export default new Router({
       }
     },
     {
-      path:'/Sing',
+      path:'/Sing/:id',
       component: Sing,
+      meta:{
+        showFooter :false
+      }
+    },
+    {
+      path:'/TqvDetail',
+      component: TqvDetail,
       meta:{
         showFooter :false
       }

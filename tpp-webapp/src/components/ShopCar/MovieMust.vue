@@ -2,7 +2,7 @@
     <div class="moviemust">
       <div class="nav">
         <p class="navp1"><span>电影代金券</span><span>无代金券</span></p>
-        <p class="navp2"><span>票价总计</span><a><span v-for="jg in cartsInfo">{{jg.pj}}</span>元</a></p>
+        <p class="navp2"><span>票价总计</span><a><span>{{zpj}}</span>元</a></p>
       </div>
 
       <div class="nav2">
@@ -52,7 +52,7 @@
           <div class="mon2">
             <p class="mon2p">电影票<span>(含服务费4.5元一张)</span></p>
             <a class="mon2a"><p>特惠票</p>
-              <span><b>惠</b><i>38.8</i>元×<em>1</em></span>
+              <span><b>惠</b><i>{{sm.movieprice}}</i>元×<em>{{sm.movie2}}</em></span>
             </a>
           </div>
           <div class="mon2">
@@ -64,7 +64,7 @@
         </div>
 
 
-        <a class="mona"><p>不支持退票改签</p><span @click="mmp">应付<b><em>50</em>元</b><i class="iconfont icon-arrRight-fill"></i></span></a>
+        <a class="mona"><p>不支持退票改签</p><span @click="mmp">应付<b><em>{{totalM}}</em>元</b><i class="iconfont icon-arrRight-fill"></i></span></a>
       </div>
       <div class="rmb">立即抢购</div>
     </div>
@@ -79,13 +79,12 @@
           return{
             flag:false,
             totalMoney:0,
-            "cartsInfo":[
-              {
-                "pj":30
-              }
-            ],
             mmp1:{},
-            eatc:[]
+            eatc:[],
+            sm:[],
+            totalM:0,
+            zpj:0,
+
           }
 
       },
@@ -94,8 +93,17 @@
           this.$http.get("http://localhost:3000/shopcardata")
             .then((response)=> {
               this.mmp1 = response.data
-              this.eatc=response.data.eatc1
-              console.log(this.eatc)
+              this.eatc=response.data
+
+            })
+        },
+        getjson(){
+          this.$http.get("http://localhost:3000/ShopMovie/1")
+            .then((response)=> {
+              this.sm = response.data
+              this.totalM = this.sm.movieprice*this.sm.movie2
+              this.zpj = this.sm.movieprice*this.sm.movie2
+              console.log(this.sm)
             })
         },
         mmp(){
@@ -103,14 +111,15 @@
         },
         addqal(sid){
           this.eatc[sid].eatcount++,
-            this.__counter(this.eatc)
+            this.zongjia(this.eatc)
+
         },
         subqal(sid){
           if(this.eatc[sid].eatcount <=0){
             this.eatc[sid].eatcount=0
           }else{
             this.eatc[sid].eatcount--,
-              this.__counter(this.eatc)
+              this.zongjia(this.eatc)
           }
 
         },
@@ -120,11 +129,18 @@
             this.totalMoney += this.eatc[i].eatprice * this.eatc[i].eatcount;
 
           }
-        }
+        },
+      zongjia(shopData){
+        this.__counter(shopData)
+        this.totalM=this.totalMoney+this.sm.movieprice*this.sm.movie2
+      }
+
       },
 
       created() {
-        this.getjsons()
+        this.getjsons(),
+          this.getjson()
+
       }
     }
 </script>

@@ -22,30 +22,34 @@
             }
         },
         methods:{
-          askCinemaData(){
+          askCinemaData(id){
             this.loading=true;
             let that = this;
-            this.$http.get("http://localhost:3000/cinema")
+            this.$http.get("http://localhost:3000/cinema/"+id)
               .then((response)=>{
                 // console.log(response)
-                this.cinema = response.data[0];
+                this.cinema = response.data;
+                // console.log(response.data)
                 that.loading=false;
                 // console.log(this.cinema)
               })
           },
           gotoData(n){
             this.flag = n
-            console.log(this.flag)
-          }
+            // console.log(this.flag)
+          },
         },
         created(){
-            this.askCinemaData()
+            this.askCinemaData(this.$route.params.id)
+        },
+        mounted(){
+            // this.reurl()
         }
     }
 </script>
 
 <style scoped>
-  .bigbox{
-    background: #ffffff;
-  }
+.bigbox{
+  background: #ffffff;
+}
 </style>

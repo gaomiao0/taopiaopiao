@@ -2,7 +2,7 @@
  <div class="center">
     <tqvideo-recommended :rec = con[0]></tqvideo-recommended>
       
-    <tqvdieo-tao-qi></tqvdieo-tao-qi>
+    <tqvdieo-tao-qi :taoqi = con[1]></tqvdieo-tao-qi>
 
     <tqvideo-fast-see></tqvideo-fast-see>
 
@@ -44,11 +44,10 @@ export default {
   props:{
     con:''
   },
-  methods: {
-    
-  },
+ 
   mounted(){
-    console.log(this.con)
+  
+    
   }
  
 }
@@ -60,6 +59,9 @@ c(p) {
   (p / 108) rem;
 }
 
+li{
+  list-style: none;
+}
 .center {
   height: c(1616);
   overflow-y: auto;
@@ -79,7 +81,7 @@ c(p) {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.8s;
+  transition: opacity 0.4s;
 }
 
 .fade-enter, .fade-leave-to {
@@ -112,19 +114,19 @@ video {
 .tqvSource {
   width: c(350);
   height: c(100);
-  background: @f5f5f5;
+  background: #f5f5f5;
   justify-content: space-around;
   border-radius: c(50);
   font-size: c(36);
 }
 
-.tqvSource img:first-child {
+.tqvSource img:nth-child(1){
   width: c(60);
   height: c(60);
   border-radius: 50%;
 }
 
-.tqvSource img:last-child {
+.tqvSource li .gua{
   width: c(35);
   height: c(35);
 }

@@ -4,7 +4,8 @@
       今天有场次
     </div>
     <ul>
-    <cinema-content-eachli :cn="n"  v-for="n in cinemas.weekdata" :key="n.id"></cinema-content-eachli>
+    <cinema-content-eachli :cn="n"  v-for="n in cinemas.weekdata" :key="n.id">
+    </cinema-content-eachli>
     </ul>
   </div>
 </template>
@@ -19,7 +20,7 @@
   }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
+<style scoped  lang="stylus" rel="stylesheet/stylus">
   c(k) {
     (k / 75) rem
   }

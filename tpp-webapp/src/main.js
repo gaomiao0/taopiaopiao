@@ -7,6 +7,7 @@ import router from './router'
 import axios from 'axios'
 import 'swiper/dist/css/swiper.css';
 import $ from 'jquery'
+import animate from "animate.css"
 
 Vue.config.productionTip = false
 
